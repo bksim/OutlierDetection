@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+%Mathematical TeX packages from the AMS
+\usepackage{amssymb,amsmath,amsthm} 
+%geometry (sets margin) 
+\usepackage[margin=1in]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\def\ci{\perp\!\!\!\perp}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Poisson}{\textrm{Poisson}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\Var}{\textrm{Var}}
+\newcommand{\Cov}{\textrm{Cov}}
+\newcommand{\Lik}{\mathcal{L}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
+\newcommand{\XX}{\textbf{X}}
+%=============================================================
+%Redefining the 'section' environment as a 'problem' with dots at the end
+
+
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3] %basic widow-orphan matching
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+%=============================================================
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Brandon Sim}
+\chead{} 
+\rhead{\thepage} 
+\lfoot{\small AC 299r} 
+\cfoot{} 
+\rfoot{\footnotesize Summary: LOCI, Fast Outlier Detection} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+\setlength\parindent{0pt}
+%=============================================================
+%Contents of problem set
+
+\begin{document}
+
+\title{LOCI: Fast Outlier Detection Using the Local Correlation Integral\\Summary}
+\author{Brandon Sim}
+
+\maketitle
+
+\section{Benefits}
+\begin{enumerate}
+\item LOCI provides an automatic, data-dictated cutoff to determine whether a point is an outlier (i.e. no hyperparameters forcing users to pick cut-offs)
+\item LOCI is quickly computable (compared to previous best methods) and approximate LOCI is practically linear in time.
+\end{enumerate}
+
+\section{Intuition}
+
+\begin{enumerate}
+\item Introduce the multi-granularity deviation factor (MDEF)
+\item Propose a method which selects a point as an outlier if its MDEF value deviates significantly (more than 3 $\sigma$) from local averages
+\end{enumerate}
+
+\section{MDEF}
+Let the $r$-neighborhood of an object $p_i$ be the set of objects within distance $r$ of $p_i$. Then, intuitively, the MDEF at radius $r$ for a point $p_i$ is the relative deviation of its local neighborhood density from the average local neighborhood density in its $r$-neighborhood. So, an object with neighborhood density that matches the average local neighborhood density will have MDEF 0; outliers will have MDEFs far from 0.
+
+This is defined formally as 
+
+\begin{equation}
+MDEF(p_i, r, \alpha) = 1 - \frac{n(p_i, \alpha r)}{\hat{n}(p_i, \alpha, r)}
+\end{equation}
+
+Here, $n(p_i, \alpha r)$ is the number of $\alpha r$-neighbors of $p_i$; that is, the number of points $p\in \mathbb{P}$ such that $d(p_i, p) \leq \alpha r$, including $p_i$ itself such that $n(p_i, \alpha r) > 0$ strictly.\\
+
+Also, $\hat{n}(p_i, \alpha, r)$ is the average of $n(p, \alpha r)$ over the set of $r$-neighbors of $p_i$; that is,
+
+\begin{equation}
+\hat{n}(p_i, \alpha, r) = \frac{\sum_{p\in\mathcal{N}(p_i, r)} n(p, \alpha r)}{n(p_i, r)}
+\end{equation}
+
+Also, define
+
+\begin{equation}
+\sigma_{MDEF}(p_i, r, \alpha)= \frac{\sigma_{\hat{n}}(p_i, r, \alpha)}{\hat{n}(p_i, r, \alpha)}
+\end{equation}
+
+where
+
+\begin{equation}
+\sigma_{\hat{n}}(p_i, r, \alpha) = \sqrt{\frac{\sum_{p\in\mathcal{N}(p_i, r)}(n(p, \alpha r)-\hat{n}(p_i, r, \alpha))^2}{n(p_i, r)}}
+\end{equation}
+
+\section{LOCI algorithm}
+For each $p_i\in\mathbb{P}$, compute $MDEF(p_i, r, \alpha)$ and $\sigma_{MDEF}(p_i, r, \alpha)$. If $MDEF > 3\sigma_{MDEF}$, flag $p_i$ as an outlier. If for any $r_{\textrm{min}} \leq r \leq r_{\textrm{max}}$ a point $p_i$ is flagged as an outlier via the aforementioned mechanism, then we consider that point to be an outlier.\\
+
+These cutoffs can be determined on a per-problem basis, but in general we use the following. We set $r_{\textrm{max}} \approx \alpha^{-1}R_{\mathbb{P}}$ and $r_{\textrm{min}}$ such that we have $\hat{n}_{\textrm{min}} = 20$ neighbors.
+\end{document}
