@@ -1,0 +1,121 @@
+
+\documentclass[11pt]{article}
+%Mathematical TeX packages from the AMS
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{hyperref}
+%geometry (sets margin) 
+\usepackage[margin=1in]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\def\ci{\perp\!\!\!\perp}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Poisson}{\textrm{Poisson}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\Var}{\textrm{Var}}
+\newcommand{\Cov}{\textrm{Cov}}
+\newcommand{\Lik}{\mathcal{L}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
+\newcommand{\XX}{\textbf{X}}
+%=============================================================
+%Redefining the 'section' environment as a 'problem' with dots at the end
+
+
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3] %basic widow-orphan matching
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+%=============================================================
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Brandon Sim}
+\chead{} 
+\rhead{\thepage} 
+\lfoot{\small AC 299r} 
+\cfoot{} 
+\rfoot{\footnotesize Survey of Outlier Detection Methods} 
+\renewcommand{\headrulewidth}{.3pt} 
+\renewcommand{\footrulewidth}{.3pt}
+\setlength\voffset{-0.25in}
+\setlength\textheight{648pt}
+\setlength\parindent{0pt}
+%=============================================================
+%Contents of problem set
+
+\begin{document}
+
+\title{Survey of Outlier Detection Methods}
+\author{Brandon Sim\\AC 299r}
+\date{}
+\maketitle
+
+\section{Summary}
+The literature review classifies outlier detection methods into three groups: types I, II, and III. Type I consists of \textbf{unsupervised clustering} algorithms, in which data is processed as a static distribution, and the most remote points are flagged as outliers. Type II consists of \textbf{supervised classification} algorithms, in which pre-labelled data is required and tagged as either normal or abnormal. Such algorithms require data that represents a good spread of both normal and abnormal data, allowing for learning to be done appropriately by the classifier. Finally, type III consists of \textbf{semi-superverised recognition or detection} algorithms, in which normality is modelled (taught) but the algorithm must learn to recognize abnormality. The approach requires pre-classified data but needs only to learn data marked as normal; it can learn the abnormality as new data is added.
+
+\subsection{Proximity-based techniques}
+\subsubsection{Type I}
+Methods of this type include:
+
+\begin{enumerate}
+\item $k$-nearest neighbor algorithm: using a suitable distance metric (Euclidean, Mahalanobis)
+\item Optimized $k$-NN (Ramaswamy et al, 2000) to produce a ranked list of potential outliers; a point $p$ is an outlier if no more than $n-1$ other points in the data set have a higher $D_m$ (distance to $m$-th neighbor) where $m$ is user-specified.
+\item Knorr and Ng (1998) use an efficient type 1 $k$-NN approach. If $m$ of the $k$ nearest neighbors (for $m<k$) lie within a threshold $d$ then the point lies in a sufficiently dense neighborhood (i.e., is not an outlier). However, this requires learning the parameters $d, m, k$.
+\item Weighted $k$-NN with connectivity-based approach (Tang 2002): calculates a weighted distance score rather than a weighted classification; calculates the average chaining distance (path length) between a point $p$ and its $k$ neighbors. If it is higher than a certain cutoff $t$ then it is deemed abnormal.
+\item $k$-means; $k$-medoids; if a new point lies outside existing clusters (where radius of cluster is defined as center to farthest point), then it is an outlier.
+\end{enumerate}
+\subsubsection{Type II}:
+\begin{enumerate}
+\item Majority voting approach (Wettschereck, 1994): using a labelled data set with normal and abnormal vectors classified, classifies a point according to the majority classification of the nearest neighbors. Or, where the voting power of nearest neighbors decreases according to its distance from the point.
+\end{enumerate}
+
+\subsection{Parametric methods}
+Proximity-based techniques often do not scale well to large datasets due to speed concerns. On the other hand, parametric methods can be evaluated rapidly for new data; model grows with model complexity and not data size. However, a pre-selected model must then be enforced to the data, losing some flexibility. 
+
+\begin{enumerate}
+\item Minimum volume ellipsoid estimation (Rousseuw and Leroy, 1996): fit the smallest permissible ellipsoid volume around the majority of the data distribution model.
+\item Convex peeling (Rousseuw and Leroy, 1996): construct a convex hull around points, peel away points on the boundaries as outliers.
+\item Maximal influence regression line (Torr and Murray, 1993): run OLSR; remove point which has maximum influence (causes greatest deviation in placement of regression line).
+\end{enumerate}
+
+\subsection{Semi-parametric methods}
+\begin{enumerate}
+\item Gaussian mixture models (Roberts and Tarassenko, 1995; Bishop 1994)
+\item Extreme value theory in Gaussian mixture models (Roberts, 1998): examine distribution tails and estimate probability that a given instance is an extreme value in an exponential distribution model.
+\item Support vector machines (Tax et al, 1999; Decoste and Levine, 2000).
+\end{enumerate}
+
+\subsection{Supervised neural methods}
+
+\begin{enumerate}
+\item Multi-layer perceptron (Nairac et al, 1999; Bishop, 1994)
+\end{enumerate}
+
+\subsection{Unsupervised neural methods}
+
+\begin{enumerate}
+\item Self organizing maps (Kohonen, 1997): competitive, unsupervised neural networks. Perform vector quantization and non-linear mapping to project data distribution onto lower dimension grid with user-specified topology.
+\item Adaptive resonance theory (ART) (Caudell and Newman, 1993): network which is plastic while learning, stable while classifying, can return to plasticity to learn again; ideal for time-series monitoring.
+\end{enumerate}
+
+\subsection{Machine Learning}
+
+\begin{enumerate}
+\item Decision trees
+\end{enumerate}
+\end{document}
