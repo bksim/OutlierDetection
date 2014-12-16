@@ -28,6 +28,18 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
+	</script>
+	<script type="text/javascript"
+	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+
 	<!-- Favicons
 	================================================== -->
 	<link rel="shortcut icon" href="images/favicon.ico">
@@ -86,11 +98,16 @@
 
 		<div id="content" class="twelve columns offset-by-one">
 			<h4 class="title">Previous Work &amp; Methods</h4>
-			<p>Five oulier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of ten experts (five methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
+			<p>The Mixture of Experts approach gets its strength from combining the output of separate methods (experts) having presumably different regimes of expertise.</p>
+
+			<p>In this project, five oulier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of ten experts (five methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
 
 			<p>We measure performance using two metrics. First, an artificial set of outliers are created (see below) and the method's ability to score them as outliers is measured. In the second method, we choose a class ('rcb') that is designated as outlier (based on initial data exploration). We then evaulate how well the method can score objects in this class as outliers. </p>
 
 			<h5>Creation of Artificial Outliers</h5>
+			<p>20 artificial outliers were created by first randomly sampling 20 light curves from the data set. Within each feature, the 20 values were randomly shuffled among the data points. Then, $n$ standard deviations (of each feature) were randomly added to each data value, where $n$ is selected from a standard normal distribution centered at 4. Figure P1 shows the outliers plotted on the PCA plane.</p>
+			<img src="images/Methods1.png" width="100%"/>
+			<p class="caption"><strong>Figure M1. Artificial Outliers on the PCA plane, along with real data.</strong> 20 Artificial outliers (white dots, black outline) were created as described. The outliers do not seem too far removed from the main cluster of points on the PCA plane, indicating that measuring outlier detection performance with these artificial points will provide a good test of robustness of each method. </p>
 
 			<h5>K Nearest Neighbors 1 (KNN1)</h5>
 

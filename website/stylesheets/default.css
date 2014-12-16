@@ -1,7 +1,7 @@
 body{overflow-y:scroll}
 div#logo a{color:black;float:left;font-size:18px;font-weight:bold;text-decoration:none}
 #content{width:695px}
-.container.main{padding:60px 0 0}
+.container.main{padding:60px 0 60px 0}
 .sidebar{height:20px}
 div#nav{position:fixed;width:160px}
 #nav .hero{margin-bottom:10px}
@@ -12,3 +12,4 @@ h5{line-height:30px;margin-bottom:7px;margin-top:7px;padding-top:0}
 h1{font-size:24px}
 h2{font-size:20px}
 div.info{color:#555;font-size:14px;font-style:italic}
+p.caption{font-size: 12px;margin-left: 25px;margin-bottom: 25px;line-height: 14px;}
