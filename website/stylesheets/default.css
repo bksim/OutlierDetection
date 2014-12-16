@@ -5,8 +5,10 @@ div#logo a{color:black;float:left;font-size:18px;font-weight:bold;text-decoratio
 .sidebar{height:20px}
 div#nav{position:fixed;width:160px}
 #nav .hero{margin-bottom:10px}
-#nav a{display:block;font-weight:bold;text-decoration:none;margin:5px 0}
+#nav a{display:block;font-weight:bold;text-decoration:none;margin:10px 0}
+#nav a:hover{text-decoration: underline;}
 h4.title{line-height:30px;margin-bottom:15px;padding-top:0}
+h5{line-height:30px;margin-bottom:7px;margin-top:7px;padding-top:0}
 h1{font-size:24px}
 h2{font-size:20px}
 div.info{color:#555;font-size:14px;font-style:italic}
