@@ -1,0 +1,12 @@
+body{overflow-y:scroll}
+div#logo a{color:black;float:left;font-size:18px;font-weight:bold;text-decoration:none}
+#content{width:695px}
+.container.main{padding:60px 0 0}
+.sidebar{height:20px}
+div#nav{position:fixed;width:160px}
+#nav .hero{margin-bottom:10px}
+#nav a{display:block;font-weight:bold;text-decoration:none;margin:5px 0}
+h4.title{line-height:30px;margin-bottom:15px;padding-top:0}
+h1{font-size:24px}
+h2{font-size:20px}
+div.info{color:#555;font-size:14px;font-style:italic}

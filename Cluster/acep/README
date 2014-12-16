@@ -1,0 +1,83 @@
+=======================================================================
+             The Optical Gravitational Lensing Experiment.
+                The OGLE-III Catalog of Variable Stars.
+              II. Type II Cepheids and Anomalous Cepheids
+                    in the Large Magellanic Cloud
+
+   I. Soszynski, A. Udalski, M.K. Szymanski, M. Kubiak, G. Pietrzynski,
+        L. Wyrzykowski, O. Szewczyk, K. Ulaczyk, and R. Poleski
+
+=======================================================================
+soszynsk@astrouw.edu.pl
+
+
+This directory contains the catalog of anomalous Cepheids in the Large
+Magellanic Cloud.
+
+The directory structure is as follows:
+
+README            - this file
+
+ident.dat         - identification of stars
+acepF.dat         - parameters of fundamental-mode anomalous Cepheids
+acep1O.dat        - parameters of first-overtone anomalous Cepheids
+
+phot/I/           - I-band photometry of individual objects
+phot/V/           - V-band photometry of individual objects
+phot.tar.gz       - gzipped phot/ directory
+
+fcharts/          - finding charts of individual objects
+                       
+pap.ps.gz         - postscript version of the paper Soszynski et al. (2008),
+                    Acta Astron. 58, 293, (arXiv:0811.3636) describing the
+                    catalog.
+
+
+Format of the file ident.dat:
+--------------------------------------------------------------------------
+ Bytes  Format Units   Description
+--------------------------------------------------------------------------
+  1- 17  A17   ---     Anomalous Cepheid ID in the form OGLE-LMC-ACEP-NNN
+ 20- 27  A8    ---     OGLE-III field
+ 29- 34  I6    ---     OGLE-III database number
+ 38- 39  A2    ---     Mode of pulsations (F, 1O)
+ 41- 42  I2    h       Right ascension, equinox 2000.0 (hours)
+ 44- 45  I2    m       Right ascension, equinox 2000.0 (minutes)
+ 47- 51  F5.2  s       Right ascension, equinox 2000.0 (seconds)
+     53  A1    ---     Declination, equinox 2000.0 (sign)
+ 54- 55  I2    deg     Declination, equinox 2000.0 (degrees)
+ 57- 58  I2    arcmin  Declination, equinox 2000.0 (arc minutes)
+ 60- 63  F4.1  arcsec  Declination, equinox 2000.0 (arc seconds)
+ 65- 79  A15   ---     OGLE-II ID
+ 81- 93  A14   ---     MACHO ID
+ 96-100  A5    ---     GCVS ID
+102-     A     ---     Other designation
+--------------------------------------------------------------------------
+
+Format of the files acepF.dat and acep1O.dat:
+--------------------------------------------------------------------------
+ Bytes  Format Units   Description
+--------------------------------------------------------------------------
+  1- 17  A17   ---     Anomalous Cepheid ID in the form OGLE-LMC-ACEP-NNN
+ 20- 25  F6.3  mag     Intensity mean I-band magnitude
+ 27- 32  F6.3  mag     Intensity mean V-band magnitude
+ 34- 44  F11.7 days    Period
+ 46- 54  F9.7  days    Uncertainty of period
+ 57- 66  F10.5 days    Time of maximum brightness (HJD-2450000)
+ 69- 73  F5.3  mag     I-band amplitude (maximum-minimum)
+ 76- 80  F5.3  ---     Fourier coefficient R_21
+ 82- 86  F5.3  ---     Fourier coefficient phi_21
+ 89- 93  F5.3  ---     Fourier coefficient R_31
+ 95- 99  F5.3  ---     Fourier coefficient phi_31
+--------------------------------------------------------------------------
+
+Finding charts are gzipped Postscript images. The names of the files are in
+the form: ID.ps.gz. The finding charts are 60"x60" subframes of the I-band
+reference frames centered on the stars. White cross marks the star. North
+is up and East to the left.
+
+
+Any presentation of the scientific analysis or usage of the data from
+the Catalog of Cepheids from the LMC should include the appropriate
+reference(s) to OGLE paper(s).
+
