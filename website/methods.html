@@ -135,9 +135,16 @@
 
 			<h5>Support Vector Machine &amp; Joint Probability (SVM+JP)</h5>
 			<p>This is a supervised learning method modified from <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Breifly, a classifier is trained on data with known class labels. For each point, a membership probability vector is produced that lists the probability of its belonging to each class. Then a joint probability for the particular combination of membership probabilities is calculated.  Nun et al. used a random forest classifier and a Bayesian Network to produce the joint probabilities. Outliers are then identified as the points that have low joint probabilities because class membership probability vectors similar to thiers were not been seen often enough in the training data. </p>
-			<p>Here, we modify the approach by using SVM (rbf kernel) for the classifier and a frequency table to determine the joint probabilities. In addition, an artificial class sampled uniformly from the sample space was used to train the classifier but excluded in the joint probability calculations. These modifications were found to improve outlier detection (especially excluded-group outliers) in our data set.</p>
-			<p>SVM was used instead of random forest because it can draw tigher decision boundaries around clusters of points in the same class when given an added artificial uniformly sampled class. This is necessary because outliers can be positioned far away from the initial training data points, yet be classified under a particular class solely due to its position radial to a class decision space. We found that the SVM classifier, with decision boundaries that encompass well the clusters of points for each particular class, improves detection of these kinds of outliers. </p>
-			<p>A joint probability table (with 9 bins of discretization) was used in the determination of joint probabilities in the interest of computational speed and clarity. Formulating this part of the method using a Bayesian Network may be explored in future work.</p>
+			<p>Here, we modify the approach by using SVM (rbf kernel) for the classifier and a frequency table to determine the joint probabilities. In addition, an artificial class sampled uniformly from the sample space was used to train the classifier. The outlier class combined used in conjuction with the rbf kernel SVM allowed the method to create bounded regions for each class even with a very small number randomly sampled background. These modifications were found to improve outlier detection (especially excluded-group outliers).  We can see a small-scale example on the classic "Iris" data set, below. </p>
+			<p>SVM was used instead of random forest because it can draws neater and tighter decision boundaries around clusters of points. This is necessary because outliers can be positioned far away from the initial training data points, yet be classified under a particular class solely due to its position radial to a class decision space. We found that the SVM classifier, with decision boundaries that encompass well the clusters of points for each particular class, improves detection of these kinds of outliers. </p>
+
+			<a href='images/Methods4.png' data-lightbox='Methods4'>
+				<img src="images/Methods4.png" width="100%"/>
+			</a>
+
+			<p class="caption"><strong>Figure P4. ROC for the SVM+JP method. </strong> Quote Quote </p>
+
+			<p>A joint probability table (with 9 bins of discretization) was used in the determination of joint probabilities in the interest of computational speed and clarity. The external outlier class was not used in these calculations.  Formulating this part of the method using a Bayesian Network may be explored in future work.</p>
 			<a href='images/Methods4.png' data-lightbox='Methods4'>
 				<img src="images/Methods4.png" width="100%"/>
 			</a>
