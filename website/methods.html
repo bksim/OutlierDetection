@@ -207,7 +207,25 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 				</p>
 
 
-				<p> An analysis of the math of the method is described below:
+				<p> An analysis of the math of the method is described now.  We let $D$ represent the generative distribution of the entire data, $M$ the majority distribution, $A$ the anomalous distribution, $\lambda$ the probability of an anomalous element generated from A and $(1-\lambda)$ the probability of a normal element generated from M.
+				</p>
+
+				<p> We write the generalized distribtuion as: <br /> $D = (1-\lambda)M + \lambda A$
+				</p>
+
+				<p> The probability distribution generation with function $\Phi$: <br />$P_{M_t}(X) = \Phi_M(M_t)(X)$ <br />$P_{A_t}(X) = \Phi_A(A_t)(X)$
+				</p>
+
+				<p> The likelihood of the distribution: <br />$L_t(D) = \prod_{i=1}^{N}P_D(x_i) = \left( (1-\lambda)^{|M_t|} \prod_{x_i \in M_t}P_{M_t}(x_i) \right) \left( \lambda^{|A_t|} \prod_{x_j \in A_t}P_{A_t}(x_j) \right)$
+				</p>
+
+				<p> The $\log$ of the above likelihood for computational speed: <br />$LL_i(D) = |M_t| \log (1-\lambda) + \sum _{x_i \in M_i} \log (P_{M_i}(x_i)) + |A_t| \log (\lambda) + \sum _{x_j \in A_t} \log (P_{A_t}(x_j))$
+				</p>
+
+				<p> Treating $x_i$ as an anomaly: <br />$M_t = M_{t-1} \backslash {x_t}$ <br /> $A_t = A_{t-1} \cup {x_t}$
+				</p>
+
+				<p> To determine outliers, we then use the score cutoff, $c$ to select, via: <br />$LL_t - LL_{t-1} < c$
 				</p>
 
 				<p> The greatest weakness of the mixture model is its dependence on the underlying simple models that form the mixture. This means that the normal points need to follow a known distribution that can lead to a computed t-statistics (can be joint distributions, etc). When in doubt, a Gaussian model can be used but the results would be less accurate and precise
