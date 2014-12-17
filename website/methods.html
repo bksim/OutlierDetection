@@ -116,7 +116,13 @@
 				<p class="caption"><strong>Figure P1. Artificial Outliers on the PCA plane, along with real data.</strong> 20 Artificial outliers (white dots, black outline) were created as described. The outliers do not seem too far removed from the main cluster of points on the PCA plane, indicating that measuring outlier detection performance with these artificial points will provide a good test of robustness of each method. </p>
 
 				<h5>K Nearest Neighbors 1 (KNN1)</h5>
-				<p>Modified from standard KNN approaches descrbied in outlier detection and classfication review literature such as <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. Description of what this method is. <mark>[Wes]</mark> </p>
+				<p>Modified from standard KNN approaches descrbied in outlier detection and classfication review literature such as <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. For every point, we compute a score which is the number of neighboring points that exist within a certain curoff distance chosen as a parameter. The distance in $n$-dimensions is merely the Euclidean norm but could be replaced by others. </p>
+				<p> When computing all neighbors for each point, this becomes a $O(n^2)$ problem.  In implementation there are ways to simplify these computations using $kd$-trees and other algorithms but this is abstracted for us by usage of the functions provided for KNN in the scikitlearn library.
+				</p>
+				<p> Using this method, there are a couple ways to evaluate outliers. The first would be to assume that the scores of KNN1 (the number of neighbors) are distributed normally such that we could filter based on a certain standard deviation count. Another option would be using the threshold parameter to find the $n$ most outliered points which can be labelled as outliers though this approach would work best by requiring a large understanding of the problem and an assumption on outlier likelihood.
+				</p>
+				<p> KNN methods are geometric - computed with scores usually based on Euclidean norms. This translates to a density-based outlier detection meaning that two very similarly in density classes or an outlier in the middle of existing classes may return false positives without a careful tuning of the cutoff distance parameter. In higher dimensions, using paired dimensions and multiple pairings can help highlight differences that exist only in single dimensions that would have otherwise averaged out but this trades off computation (O(n^4) naively since there are now ${n \choose 2}$ pairwise dimensions to evaluate all $n$ points.)
+				</p>
 
 			
 				<a href='images/knn1.png' data-lightbox='knn1'>
@@ -127,11 +133,13 @@
 				<a href='images/Methods2.png' data-lightbox='Methods2'>
 					<img src="images/Methods2.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> The ROC curves shows that this method works well espescially for the RCB outlier class.  We see an fairly optimal curve and this validates our hypothesis that a simple geometric approach may lead to positive results.  The artificial outlier class is not as easily detected.</p>
+				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> The ROC curves shows that this method works well espescially for the RCB outlier class.  We see an fairly optimal curve and this validates our hypothesis that a simple geometric approach may lead to positive results. The artificial outlier class is not as easily detected.</p>
 
 
 				<h5>K Nearest Neighbors 2 (KNN2)</h5>
-				<p>As with the other KNN algorithm (KNN1) this version is also discussed in standard classification/outlier detection approaches as in <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. Similar to the method above </p>
+				<p>As with the other KNN algorithm (KNN1) this version is also discussed in standard classification/outlier detection approaches as in <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. As opposed to using a Euclidean-norm cutoff distance in $n$-dimensions, the given parameter, $n$, is the number of neighbors to compute. Then, the Euclidean-norm score is computed to all of the $n$ nearest neighbors. The total distance (which should be monotonically increasing) will be the score for each point. </p>
+				<p> The computation order is similarly $O(n^2)$ which when computed with different data structures like $kd$-trees can be optimized. The process of labelling outliers is also as above - be it with the assumption of normally distributed scores with a standard deviation cutoff, or tuning the parameters to select a certain proportion of possible outliers. The weakness of KNN2 is the same as KNN1 in that KNN-based methods are geometric and density based, as described above.  The problem is solved with pairwise analysis in higher dimensionality but this leads to a tradeoff with increasingly difficult computation.
+				</p>
 
 				<center>
 				<a href='images/knn2.png' data-lightbox='knn2'>
