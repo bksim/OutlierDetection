@@ -13,4 +13,4 @@ h5{line-height:30px;margin-bottom:7px;margin-top:25px;padding-top:0}
 h1{font-size:24px}
 h2{font-size:20px}
 div.info{color:#555;font-size:14px;font-style:italic}
-p.caption{font-size: 12px;margin-left: 25px;margin-bottom: 25px;line-height: 14px;}
+p.caption{font-size: 12px;margin-left: 25px;margin-right: 25px;margin-bottom: 25px;line-height: 14px;background: rgb(247, 247, 247);padding: 5px;}

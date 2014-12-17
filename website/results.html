@@ -100,7 +100,11 @@
 			<h4 class="title">Mixture of Experts &amp; Results</h4>
 			<h5>Introduction to the Mixture of Experts</h5>
 			<p>With the mixture of experts approach, we assume that each outlier detection method performs best within a particular domain of the sample space. In this ensemble method, we combine the results from each method in a smart way so that the diversity of experts can make up for deficiencies in individual methods over particular domains. Therefore, the result of each expert is weighted by values generated based on the location of the point in the 57-dimensional space. The gating parameter $\eta_i$ for each expert $i$ must be trained. </p>
-			<p>The gating probability $g_i^x$ is the weight assigned to each expert $i$ for data point $\vec{x}$
+
+			<img src="images/Results0.png" width="50%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+			<p class="caption"><strong>Figure R1. Mixture of Experts. </strong> The result of each expert is weighted by values generated from a gating network. Both the gating network and the experts must be trained.</p>
+
+			<p>The gating probability $g_i^x$ is the weight assigned to each expert $i$ for data point $\vec{x}$. The weights are generated using a soft-max gating network:
 				$$g_i^x= \frac{exp(\vec{\eta_i}^T \vec{x})}{\sum_{j=1}^k exp(\vec{\eta_j}^T \vec{x}) },$$
 				where $\vec{x}$ is a 57-dimensional data vector (one data point), and $\eta_i$ is the gating parameter for each expert $i$, with a total of $k$ experts. Thus, the outlierliness score $P_x$ for a particular data point $\vec{x}$ is:
 				$$P_x = \sum_{i=1}^k g_i(\vec{\eta_j},\vec{x}) p_i(\vec{x}),$$
@@ -111,7 +115,7 @@
 			<h5>Results</h5>
 			<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers.</p>
 			<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
-			<p class="caption"><strong>Figure R1. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
+			<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
 		</div>
 	</div><!-- container -->
 
