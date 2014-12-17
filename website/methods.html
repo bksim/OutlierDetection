@@ -102,7 +102,7 @@
 
 			<div id="content" class="nine columns">
 				<h4 class="title">Previous Work &amp; Methods</h4>
-				<p>The Mixture of Experts approach gets its strength from combining the output of separate methods (experts) having presumably different regimes of expertise.</p>
+				<p>The Mixture of expertss approach gets its strength from combining the output of separate methods (experts) having presumably different regimes of expertise.</p>
 
 				<p>In this project, five outlier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of ten experts (five methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
 
@@ -201,13 +201,12 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 
 
 				<h5>Mixture Model (Eskin)</h5>
-				<p>Modified from <a href="http://academiccommons.columbia.edu/download/fedora_content/download/ac:125814/CONTENT/anomaly-icml00.pdf">Eskin, 2000</a>. The main goal behind the mixture model is to simplify a more complicated interaction to a combination of simpler distributions. Outlier classification is done by first assuming that all points belong in the normal group - and then computing a T-statistic to compute the probaiblity of observing this grouping.  For the sake of the math, </p>
+				<p>Modified from <a href="http://academiccommons.columbia.edu/download/fedora_content/download/ac:125814/CONTENT/anomaly-icml00.pdf">Eskin, 2000</a>. The main goal behind the mixture model is to simplify a more complicated interaction to a combination of simpler distributions. Outlier classification is done by first assuming that all points belong in the normal group - and then computing a T-statistic to compute the probaiblity of observing this grouping.  Then, for every orderm, $k$, (we only implemented order-1 where $k=1$), we iterate through the ${n \choose k}$ space to move $k$ points into the outlier class, which is usually assumed to be uniform.  Then the scores of the new grouping is computed. If the change in score is past a given threshold, the $k$ points are marked as outliers in that order of space. In summary, for order-1, each point is moved from the normal to the outlier class and if the scores improve under this grouping beyond a certain threshold, the point is accepted as an ourlier. This does mean that optimizing for the theshold parameter can only be performed to target a certain number of outliers, again requiring additional knowledge. For computational efficiency, often the scoring is based on $\log$ scores.</p>
 
-				<p> We'll take a look at the math analysis for the model - which is simple enough to understand.
-
+				<p> An analysis of the math of the method is described below:
 				</p>
 
-				<center>
+				<center>	
 				<a href='images/mixturemodel.jpg' data-lightbox='mixturemodel'>
 					<img src="images/mixturemodel.jpg" width="60%"/>
 				</a>
