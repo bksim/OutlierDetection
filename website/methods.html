@@ -203,7 +203,14 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 				<h5>Mixture Model (Eskin)</h5>
 				<p>Modified from <a href="http://academiccommons.columbia.edu/download/fedora_content/download/ac:125814/CONTENT/anomaly-icml00.pdf">Eskin, 2000</a>. The main goal behind the mixture model is to simplify a more complicated interaction to a combination of simpler distributions. Outlier classification is done by first assuming that all points belong in the normal group - and then computing a T-statistic to compute the probaiblity of observing this grouping.  Then, for every orderm, $k$, (we only implemented order-1 where $k=1$), we iterate through the ${n \choose k}$ space to move $k$ points into the outlier class, which is usually assumed to be uniform.  Then the scores of the new grouping is computed. If the change in score is past a given threshold, the $k$ points are marked as outliers in that order of space. In summary, for order-1, each point is moved from the normal to the outlier class and if the scores improve under this grouping beyond a certain threshold, the point is accepted as an ourlier. This does mean that optimizing for the theshold parameter can only be performed to target a certain number of outliers, again requiring additional knowledge. For computational efficiency, often the scoring is based on $\log$ scores.</p>
 
+				<p> The are three main assumptions that allow this Eskin approach to work the best. First, that the normal data can be fairly modelled by the given probability distribution. Second, that the anomalous elements are sufficiently distinct from the normal elements. And finally, that anomalies are few ($< 5\%$) of the entire data set or else the model will get distorted.
+				</p>
+
+
 				<p> An analysis of the math of the method is described below:
+				</p>
+
+				<p> The greatest weakness of the mixture model is its dependence on the underlying simple models that form the mixture. This means that the normal points need to follow a known distribution that can lead to a computed t-statistics (can be joint distributions, etc). When in doubt, a Gaussian model can be used but the results would be less accurate and precise
 				</p>
 
 				<center>	
