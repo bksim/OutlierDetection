@@ -109,24 +109,40 @@
 			<img src="images/Methods1.png" width="100%"/>
 			<p class="caption"><strong>Figure M1. Artificial Outliers on the PCA plane, along with real data.</strong> 20 Artificial outliers (white dots, black outline) were created as described. The outliers do not seem too far removed from the main cluster of points on the PCA plane, indicating that measuring outlier detection performance with these artificial points will provide a good test of robustness of each method. </p>
 
+
+
 			<h5>K Nearest Neighbors 1 (KNN1)</h5>
-			<p>Modified from ??????. Description of what this method is. [Brandon] </p>
+			<p>Modified from ??????. Description of what this method is. <mark>[Brandon]</mark> </p>
 			<img src="images/Methods2.png" width="100%"/>
-			<p class="caption"><strong>Figure M2. Artificial Outliers on the PCA plane, along with real data.</strong> 20 Artificial outliers (white dots, black outline) were created as described. The outliers do not seem too far removed from the main cluster of points on the PCA plane, indicating that measuring outlier detection performance with these artificial points will provide a good test of robustness of each method. </p>
+			<p class="caption"><strong>Figure M2. ROC for the KNN1 method.</strong> description... </p>
+
+
 
 			<h5>K Nearest Neighbors 2 (KNN2)</h5>
-			<p>Modified from ??????. Description of what this method is. [Brandon] </p>
+			<p>Modified from ??????. Description of what this method is. <mark>[Brandon]</mark> </p>
 			<img src="images/Methods3.png" width="100%"/>
-			<p class="caption"><strong>Figure M3. Artificial Outliers on the PCA plane, along with real data.</strong> 20 Artificial outliers (white dots, black outline) were created as described. The outliers do not seem too far removed from the main cluster of points on the PCA plane, indicating that measuring outlier detection performance with these artificial points will provide a good test of robustness of each method. </p>
+			<p class="caption"><strong>Figure M3. ROC for the KNN2 method.</strong> description... </p>
+
 
 			<h5>Support Vector Machine &amp; Joint Probability (SVM+JP)</h5>
-			<p>Modified from Nun et al. 2012. </p>
+			<p>This is a supervised learning method modified from <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Breifly, a classifier is trained on data of known labeled classes. A vector of probability is produced for each point that lists the probability of its belonging to each class. Then a joint probability for the particular combination of membership probabilities is calculated.  Nun et al. used a random forest classifier and a Bayesian Network to produce the probabilities. </p>
+			<p>Here, we modify the approach by using SVM for the classifier and a joint probability table to determine the joint probabilities.</p>
+			<img src="images/Methods4.png" width="100%"/>
+			<p class="caption"><strong>Figure M4. ROC for the SVM+JP method. </strong> description... </p>
+
+
 
 			<h5>LOcal Correlation Index (LOCI)</h5>
 			Modified from Papdimitriou et al. 201?.
+			<img src="images/Methods5.png" width="100%"/>
+			<p class="caption"><strong>Figure M5. ROC for the LOCI method. <mark>[Brandon]</mark></strong> description... </p>
 
-			<h5>Eskin (KNN1)</h5>
+
+
+			<h5>Eskin (Eskin)</h5>
 			Modified from Eskin et al. 201?.
+			<img src="images/Methods6.png" width="100%"/>
+			<p class="caption"><strong>Figure M6. ROC for the Eskin method. <mark>[Wes]</mark></strong> description... </p>
 
 
 		</div>
