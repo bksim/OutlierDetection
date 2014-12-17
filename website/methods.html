@@ -122,27 +122,28 @@
 				<a href='images/knn1.png' data-lightbox='knn1'>
 					<img src="images/knn1.png"/>
 				</a>
-				<p class="caption"><strong>Figure P2. Visual representation .</strong> description... </p>
+				<p class="caption"><strong>Figure P2. Visual representation .</strong> In a visualization to see how a KNN scoring method would work under this first version, we see how for a given point in question (the smiley face) it counts all neighbors within a cutoff distance (the solid or dotted circles).  Although the visualization is in the supervised classification context, this cutoff radius and neighbor counting is analagous in the unsupervised outlier detection context. </p>
 
 				<a href='images/Methods2.png' data-lightbox='Methods2'>
 					<img src="images/Methods2.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> description... </p>
+				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> The ROC curves shows that this method works well espescially for the RCB outlier class.  We see an fairly optimal curve and this validates our hypothesis that a simple geometric approach may lead to positive results.  The artificial outlier class is not as easily detected.</p>
 
 
 				<h5>K Nearest Neighbors 2 (KNN2)</h5>
-				<p>As with the other KNN algorithm (KNN1) this version is also discussed in standard classification/outlier detection approaches as in <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. Description of what this method is. <mark>[Wes]</mark> </p>
+				<p>As with the other KNN algorithm (KNN1) this version is also discussed in standard classification/outlier detection approaches as in <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>. Similar to the method above </p>
 
 				<center>
 				<a href='images/knn2.png' data-lightbox='knn2'>
 					<img src="images/knn2.png"/>
 				</a>
-				<p class="caption"><strong>Figure P4. Visual Representation of KNN2.</strong> description... </p>
 				</center>
+				<p class="caption"><strong>Figure P4. Visual Representation of KNN2.</strong> Although still in a classification context, we see how the point under study has distances computed to the nearest k neighbors (in this case 9) whose scores can be summed up to result in a final score for this node.  </p>
+				
 				<a href='images/Methods3.png' data-lightbox='Methods3'>
 					<img src="images/Methods3.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P5. ROC for the KNN2 method.</strong> description... </p>
+				<p class="caption"><strong>Figure P5. ROC for the KNN2 method.</strong> This version independently performs fairly well put not as well as KNN1 for the RCB class but detected the artificial outlier class moderately better.</p>
 
 
 				<h5>Support Vector Machine &amp; Joint Probability (SVM+JP)</h5>
@@ -153,8 +154,13 @@
 				<a href='images/svmiris.jpg' data-lightbox='svmiris'>
 					<img src="images/svmiris.jpg" width="100%"/>
 				</a>
-
 				<p class="caption"><strong>Figure P6. RBF Kernel SVM on Iris Data </strong> Quote Quote </p>
+
+				<a href='images/Methods4.png' data-lightbox='Methods4'>
+				<img src="images/Methods4.png" width="100%"/>
+					</a>
+				<p class="caption"><strong>Figure P7. ROC for the SVM+JP method. </strong> In the infrared channel (left), the SVM+JP method does very well in idenfitying the rcb outliers, whereas it does not do significantly well above random guessing for the Artificual outliers. In the visible channel (left), there is poorer performance for the rcb data. </p>
+
 
 
 				<h5>Local Correlation Integral (LoCI)</h5>
@@ -183,23 +189,28 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 				<a href='images/Methods5.png' data-lightbox='Methods5'>
 					<img src="images/Methods5.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P7. ROC for the LOCI method. <mark>[Brandon]</mark></strong> description... </p>
+				<p class="caption"><strong>Figure P8. ROC for the LOCI method. <mark>[Brandon]</mark></strong> description... </p>
 
 
 				<h5>Mixture Model (Eskin)</h5>
-				<p>Modified from <a href="http://academiccommons.columbia.edu/download/fedora_content/download/ac:125814/CONTENT/anomaly-icml00.pdf">Eskin, 2000</a>.</p>
+				<p>Modified from <a href="http://academiccommons.columbia.edu/download/fedora_content/download/ac:125814/CONTENT/anomaly-icml00.pdf">Eskin, 2000</a>. The main goal behind the mixture model is to simplify a more complicated interaction to a combination of simpler distributions. Outlier classification is done by first assuming that all points belong in the normal group - and then computing a T-statistic to compute the probaiblity of observing this grouping.  For the sake of the math, </p>
+
+				<p> We'll take a look at the math analysis for the model - which is simple enough to understand.
+
+				</p>
 
 				<center>
 				<a href='images/mixturemodel.jpg' data-lightbox='mixturemodel'>
 					<img src="images/mixturemodel.jpg" width="60%"/>
 				</a>
-				<p class="caption"><strong>Figure P8. Mixture Model Visual.</strong> description... </p>
 				</center>
+				<p class="caption"><strong>Figure P9. Mixture Model Visual.</strong> We see a visual for modelling a more complex system as a joint "mixture" of various simpler models, in this case, the combination of various Gaussians with different parameters. </p>
+				
 
 				<a href='images/Methods6.png' data-lightbox='Methods6'>
 					<img src="images/Methods6.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P9. ROC for the Eskin method. <mark>[Wes]</mark></strong> description... </p>
+				<p class="caption"><strong>Figure P10. ROC for the Eskin method. </strong> We see that its performance is quite superior with the RCB class but more lacking with the artificial outliers. As discussed in the mechanics, a mixture model is only as good as the individual models that need to be mixed. Perhaps the Gaussian assumptions for the aritifical outliers are not as good. </p>
 
 
 			</div>
