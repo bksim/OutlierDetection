@@ -47,6 +47,10 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/lightbox.min.js"></script>
+	<link href="css/lightbox.css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -114,7 +118,8 @@
 
 			<h5>Results</h5>
 			<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers.</p>
-			<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+			<a href='images/Results1.png' data-lightbox='Results1'>
+			<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
 			<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
 			<p>As shown above, the mixture of experts ensemblem method is able to perform better than any of the individual outlier detection methods discussed in the previous section. </p>
 
