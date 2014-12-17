@@ -8,7 +8,7 @@ div#nav{position:fixed;width:200px}
 #nav .hero{margin-bottom:10px}
 #nav a{color:#181818; display:block;font-weight:bold;text-decoration:none;margin:15px 0;line-height: 15px;}
 #nav a:hover{text-decoration: underline;}
-h4.title{line-height:30px;margin-bottom:15px;padding-top:0}
+h4.title{line-height:30px;margin-bottom:15px;margin-top:5px;}
 h5{line-height:30px;margin-bottom:7px;margin-top:25px;padding-top:0}
 h1{font-size:24px}
 h2{font-size:20px}
