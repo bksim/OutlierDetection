@@ -38,6 +38,14 @@
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="js/lightbox.min.js"></script>
 	<link href="css/lightbox.css" rel="stylesheet" />
+
+	<script>
+	$(document).ready(function(){
+	  $(".toggle").click(function(){
+	    $(".toggle-table").toggle();
+	  });
+	});
+	</script>
 </head>
 <body>
 
@@ -97,30 +105,28 @@
 
 				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. A list of the features used can be seen in the table below, and further documentation regarding the specific features used can be found in the library and in our code.
 
-				<table class="u-full-width">
-				  <thead>
-				    <tr>
-				      <th>Name</th>
-				      <th>Age</th>
-				      <th>Sex</th>
-				      <th>Location</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Dave Gamache</td>
-				      <td>26</td>
-				      <td>Male</td>
-				      <td>San Francisco</td>
-				    </tr>
-				    <tr>
-				      <td>Dwayne Johnson</td>
-				      <td>42</td>
-				      <td>Male</td>
-				      <td>Hayward</td>
-				    </tr>
-				  </tbody>
-				</table>
+				<br><br>
+				<a href='#' class='toggle'>[show/hide table of features]</a>
+				<div class='toggle-table'>
+					<table class="u-full-width">
+					  <thead>
+					    <tr>
+					      <th>Feature</th>
+					      <th>Description</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>Dave Gamache</td>
+					      <td>26</td>
+					    </tr>
+					    <tr>
+					      <td>Dwayne Johnson</td>
+					      <td>42</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 
 				As part of this project, we made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-periodogram deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
 
