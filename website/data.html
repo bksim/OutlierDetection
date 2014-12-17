@@ -94,12 +94,17 @@
 			<p>57 Time series features were extracted using a library... Some of the features included...
 			 <mark>[Brandon]</mark></p>
 
+			 <p>1913 light curves were taken, ... in this class ... in this class .. in this class (less than what you had because I only used data points that had BOTH I and V channels)
+			 <mark>[Brandon]</mark></p>
+
 			<h5>Data Visualization</h5>
-			<p>PCA plot of features</p>
+			<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). </p>
 			<img src="images/Data1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
 			<p class="caption"><strong>Figure D1. PCA of light curves.</strong> Principal component analysis (PCA) was done on the extracted time series features for each light curve. Each dot represents a light curve. The color represents the known class label of the light cuvrve. Time series data from the visible (V) (top) and infrared (I) channels are shown.</p>
 
-			<p>brandon's manual exploration</p>
+			<p>As can be seen, the rcb class appears to be the most outlierly, with points spread out across the PCA plane, separate from the cluster of points in other classes. This was one reason we chose to use the rcb class to test our outlier detection methods.</p>
+
+			<p>brandon's manual exploration <mark>[Brandon]</mark></p>
 		</div>
 	</div><!-- container -->
 
