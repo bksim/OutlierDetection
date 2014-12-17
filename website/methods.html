@@ -130,7 +130,7 @@
 			<p>SVM was used instead of random forest because it can draw tigher decision boundaries around clusters of points in the same class when given an added artificial uniformly sampled class. This is necessary because outliers can be positioned far away from the initial training data points, yet be classified under a particular class solely due to its position radial to a class decision space. We found that the SVM classifier, with decision boundaries that encompass well the clusters of points for each particular class, improves detection of these kinds of outliers. </p>
 			<p>A joint probability table (with 9 bins of discretization) was used in the determination of joint probabilities in the interest of computational speed and clarity. Formulating this part of the method using a Bayesian Network may be explored in future work.</p>
 			<img src="images/Methods4.png" width="100%"/>
-			<p class="caption"><strong>Figure M4. ROC for the SVM+JP method. </strong> In the infrared channel (left), the SVM+JP method does very well in idenfitying the rcb outliers, whereas it does not do significantly well above random guessing for the Artificual outliers. In the visible channel (left), there is poorer performance for the rcb data. </p>
+			<p class="caption"><strong>Figure M4. ROC for the SVM+JP method. </strong> In the infrared channel (left), the SVM+JP method does very well in identifying the rcb outliers, whereas it does not do significantly better than random guessing for the artificial outliers. In the visible channel (left), there is poorer performance for the rcb data. </p>
 
 
 
