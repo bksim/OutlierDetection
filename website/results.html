@@ -116,6 +116,12 @@
 			<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers.</p>
 			<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
 			<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
+			<p>As shown above, the mixture of experts ensemblem method is able to perform better than any of the individual outlier detection methods discussed in the previous section. </p>
+
+			<h5>Next Steps</h5>
+			<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. As well, this initial model trained on sample subset data should be used to identify outliers in the full dataset. </p>
+
+
 		</div>
 	</div><!-- container -->
 
