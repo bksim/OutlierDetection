@@ -41,10 +41,32 @@
 
 	<script>
 	$(document).ready(function(){
-	  $(".toggle").click(function(){
-	    $(".toggle-table").toggle();
-	  });
+		var hide=true;
+		$(".toggle-table").toggle();
+	 	$(".toggle").click(function(){
+	 		if(hide){
+	 			$(".toggle").html("[hide table of features]");
+	 			hide=false;
+	 		}
+	 		else{
+	 			$(".toggle").html("[show table of features]");
+	 			hide=true;
+	 		}
+	    	$(".toggle-table").toggle();
+	  	});
 	});
+	</script>
+	<script type="text/javascript"
+	    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
 	</script>
 </head>
 <body>
@@ -105,24 +127,160 @@
 
 				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. A list of the features used can be seen in the table below, and further documentation regarding the specific features used can be found in the library and in our code.
 
-				<br><br>
-				<a href='#' class='toggle'>[show/hide table of features]</a>
+				<br><br>	
+				<span style='color:#2C7DA0;text-decoration:underline;cursor:pointer;' class='toggle'>[show table of features]</span>
 				<div class='toggle-table'>
 					<table class="u-full-width">
 					  <thead>
 					    <tr>
 					      <th>Feature</th>
-					      <th>Description</th>
+					      <th>Reference</th>
 					    </tr>
 					  </thead>
 					  <tbody>
 					    <tr>
-					      <td>Dave Gamache</td>
-					      <td>26</td>
+					      <td>Amplitude</td>
+					      <td>Richards et al., 2011</td>
 					    </tr>
 					    <tr>
-					      <td>Dwayne Johnson</td>
-					      <td>42</td>
+					      <td>Anderson-Darling test</td>
+					      <td>Kim et al., 2008</td>
+					    </tr>
+					    <tr>
+					      <td>Automean</td>
+					      <td>None</td>
+					    </tr>
+					    <tr>
+					      <td>Autocorrelation length</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Beyond1Std</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>CAR$_\sigma$</td>
+					      <td>Pichara et al., 2012</td>
+					    </tr>
+					    <tr>
+					      <td>CAR_tmean</td>
+					      <td>Pichara et al., 2012</td>
+					    </tr>
+					    <tr>
+					      <td>CAR$_\tau$</td>
+					      <td>Pichara et al., 2012</td>
+					    </tr>
+					    <tr>
+					      <td>Con</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>$\eta_e$</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Flux percentile Ratio Mid 20</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Flux percentile ratio Mid 35</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Flux percentile ratio Mid 50</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Flux percentile ratio Mid 65</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Flux percentile ratio Mid 80</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Linear trend</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Max slope</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Mean</td>
+					      <td>Kim et al., 2014</td>
+					    </tr>
+					    <tr>
+					      <td>Mean variance</td>
+					      <td>Kim et al., 2014</td>
+					    </tr>
+					    <tr>
+					      <td>Median Absolute Dev</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Median BRP</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Pair slope trend</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Percent amplitude</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Percent difference flux percentile</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Period (Lomb-Scargle)</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Period (fit)</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>$\psi_{\textrm{cs}}$</td>
+					      <td>Kim et al., 2014</td>
+					    </tr>
+					    <tr>
+					      <td>$\psi_{\eta}$</td>
+					      <td>Kim et al., 2014</td>
+					    </tr>
+					    <tr>
+					      <td>Q31</td>
+					      <td>Kim et al., 2014</td>
+					    </tr>
+					    <tr>
+					      <td>Rcs</td>
+					      <td>Kim et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Skew</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Small kurtosis</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Standard deviation</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Stetson-K</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Frequency $i$, Amplitude $A_j$, for $i\in\{1,2,3\}, j\in\{1,2,3,4\}$</td>
+					      <td>Richards et al., 2011</td>
+					    </tr>
+					    <tr>
+					      <td>Frequency $i$, Relative phase $\phi_j$, for $i\in\{1,2,3\}, j\in\{1,2,3,4\}$</td>
+					      <td>Richards et al., 2011</td>
 					    </tr>
 					  </tbody>
 					</table>
