@@ -76,46 +76,75 @@
 	<!-- container -->
 
 	<div class="main container">
-		<div class="three columns sidebar">
-			<div id="nav">
-				<h4 class="hero">Navigation</h4>
-				<a href="./index.html">Home</a>
-				<a href="./motivation.html">Motivation</a>
-				<a href="./data.html">Data &amp; Initial Exploration</a>
-				<a href="./methods.html">Previous Work &amp; Methods</a>
-				<a href="./results.html">Mixture of Experts &amp; Results</a>
+		<div class="row">
+			<div class="three columns sidebar">
+				<div id="nav">
+					<h4 class="hero">Navigation</h4>
+					<a href="./index.html">Home</a>
+					<a href="./motivation.html">Motivation</a>
+					<a href="./data.html">Data &amp; Initial Exploration</a>
+					<a href="./methods.html">Previous Work &amp; Methods</a>
+					<a href="./results.html">Mixture of Experts &amp; Results</a>
+				</div>
 			</div>
-		</div>
 
-		<div id="content" class="twelve columns offset-by-one">
-			<h4 class="title">Data &amp; Initial Exploration</h4>
-			<h5>Timeseries Data and Feature Extraction</h5>
-
-
-			<p>Data used in the present study is a sample of the larger dataset used in <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Briefly, the astronomical time series are from the MACHO (Massive Compact Halo Object) catalog, a collection of star observations from July 1992 to 1999. Regions of the sky surveyed include the Large Magellanic Cloud (LMC), the Small Magellanic Cloud (SMC), and the Galactic bulge (<a href="http://iopscience.iop.org/0004-637X/486/2/697">Alcock et al. 1997</a>). Data from the infrared (I) and visible (V) channels are used in this project.</p>
-
-			<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. Documentation regarding the specific features used can be found in the library and in our code, but some selected features include the amplitude, the ...<!--FILL IN--> As part of this project, we made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
-
-			 <p>1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
+			<div id="content" class="nine columns">
+				<h4 class="title">Data &amp; Initial Exploration</h4>
+				<h5>Timeseries Data and Feature Extraction</h5>
 
 
+				<p>Data used in the present study is a sample of the larger dataset used in <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Briefly, the astronomical time series are from the MACHO (Massive Compact Halo Object) catalog, a collection of star observations from July 1992 to 1999. Regions of the sky surveyed include the Large Magellanic Cloud (LMC), the Small Magellanic Cloud (SMC), and the Galactic bulge (<a href="http://iopscience.iop.org/0004-637X/486/2/697">Alcock et al. 1997</a>). Data from the infrared (I) and visible (V) channels are used in this project.</p>
+
+				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. A list of the features used can be seen in the table below, and further documentation regarding the specific features used can be found in the library and in our code.
+
+				<table class="u-full-width">
+				  <thead>
+				    <tr>
+				      <th>Name</th>
+				      <th>Age</th>
+				      <th>Sex</th>
+				      <th>Location</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Dave Gamache</td>
+				      <td>26</td>
+				      <td>Male</td>
+				      <td>San Francisco</td>
+				    </tr>
+				    <tr>
+				      <td>Dwayne Johnson</td>
+				      <td>42</td>
+				      <td>Male</td>
+				      <td>Hayward</td>
+				    </tr>
+				  </tbody>
+				</table>
+
+				As part of this project, we made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-periodogram deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
+
+				 <p>1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
 
 
-			<h5>Data Visualization</h5>
-			<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). </p>
-
-			<a href='images/Data1.png' data-lightbox='Data1'>
-			<img src="images/Data1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
-			</a>
-
-			<p class="caption"><strong>Figure D1. PCA of light curves.</strong> Principal component analysis (PCA) was done on the extracted time series features for each light curve. Each dot represents a light curve. The color represents the known class label of the light cuvrve. Time series data from the visible (V) (top) and infrared (I) channels are shown.</p>
-
-			<p>As can be seen, the rcb class appears to be the most outlierly, with points spread out across the PCA plane, separate from the cluster of points in other classes. This was one reason we chose to use the rcb class to test our outlier detection methods.</p>
 
 
+				<h5>Data Visualization</h5>
+				<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). </p>
 
-			<h5>Initial Exploration</h5>
-			<p>brandon's manual exploration <mark>[Brandon]</mark></p>
+				<a href='images/Data1.png' data-lightbox='Data1'>
+				<img src="images/Data1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+				</a>
+
+				<p class="caption"><strong>Figure D1. PCA of light curves.</strong> Principal component analysis (PCA) was done on the extracted time series features for each light curve. Each dot represents a light curve. The color represents the known class label of the light cuvrve. Time series data from the visible (V) (top) and infrared (I) channels are shown.</p>
+
+				<p>As can be seen, the rcb class appears to be the most outlierly, with points spread out across the PCA plane, separate from the cluster of points in other classes. This was one reason we chose to use the rcb class to test our outlier detection methods.</p>
+
+
+
+				<h5>Initial Exploration</h5>
+				<p>brandon's manual exploration <mark>[Brandon]</mark></p>
+			</div>
 		</div>
 	</div><!-- container -->
 

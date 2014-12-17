@@ -73,47 +73,49 @@
 	<!-- container -->
 
 	<div class="main container">
-		<div class="three columns sidebar">
-			<div id="nav">
-				<h4 class="hero">Navigation</h4>
-				<a href="./index.html">Home</a>
-				<a href="./motivation.html">Motivation</a>
-				<a href="./data.html">Data &amp; Initial Exploration</a>
-				<a href="./methods.html">Previous Work &amp; Methods</a>
-				<a href="./results.html">Mixture of Experts &amp; Results</a>
+		<div class="row">
+			<div class="three columns sidebar">
+				<div id="nav">
+					<h4 class="hero">Navigation</h4>
+					<a href="./index.html">Home</a>
+					<a href="./motivation.html">Motivation</a>
+					<a href="./data.html">Data &amp; Initial Exploration</a>
+					<a href="./methods.html">Previous Work &amp; Methods</a>
+					<a href="./results.html">Mixture of Experts &amp; Results</a>
+				</div>
 			</div>
-		</div>
 
-		<div id="content" class="twelve columns offset-by-one">
-			<h4 class="title">Motivation</h4>
+			<div id="content" class="nine columns">
+				<h4 class="title">Motivation</h4>
 
-			<p>Outlier detection is a growing area of research in machine learning with numerous real-world applications (<a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>). 
+				<p>Outlier detection is a growing area of research in machine learning with numerous real-world applications (<a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>). 
 
-				In astronomy, the detection of outlier light curves is a strategy for systematic discovery of new objects given the massive data that are impossible to analyze by human eye (<a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>). 
+					In astronomy, the detection of outlier light curves is a strategy for systematic discovery of new objects given the massive data that are impossible to analyze by human eye (<a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>). 
 
-				In finance, outlier detection is used to identify sudden shocks and help model volatility (<a href="http://www.sciencedirect.com/science/article/pii/S026499930600040X">Charles and Darne 2006</a>). 
+					In finance, outlier detection is used to identify sudden shocks and help model volatility (<a href="http://www.sciencedirect.com/science/article/pii/S026499930600040X">Charles and Darne 2006</a>). 
 
-			</p>
-			<img src="images/Motivation2.gif" width="60%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
-			<p class="caption"><strong>Figure M1. In finance, outlier detection can be used to identify time periods of interest.</strong> From <a href="http://www.marketoracle.co.uk/Article30897.html">BCA Research 2011</a>.</p>
+				</p>
+				<img src="images/Motivation2.gif" width="60%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+				<p class="caption"><strong>Figure M1. In finance, outlier detection can be used to identify time periods of interest.</strong> From <a href="http://www.marketoracle.co.uk/Article30897.html">BCA Research 2011</a>.</p>
 
-			<p>
+				<p>
 
-				In computer science, malware can be identified by simply monitoring outlier system processes (<a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6676498&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6676498">Canzanese et al. 2013</a>) and unusual system usuage, or attacks on servers, can be caught with outlier detection. 
+					In computer science, malware can be identified by simply monitoring outlier system processes (<a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6676498&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6676498">Canzanese et al. 2013</a>) and unusual system usuage, or attacks on servers, can be caught with outlier detection. 
 
-				In banking, outlier detection could be used to identify suspicious activity or fraud (<a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=1623916&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D1623916">Ferdousi and Maeda 2006</a>). 
+					In banking, outlier detection could be used to identify suspicious activity or fraud (<a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=1623916&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D1623916">Ferdousi and Maeda 2006</a>). 
 
-				In engineering, fault detection is an application of outier detection - being able to monitor manufacturing lines or processes to detect defects or errors (<a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>).
+					In engineering, fault detection is an application of outier detection - being able to monitor manufacturing lines or processes to detect defects or errors (<a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>).
 
-				In biology, outlier detection is used as a test for natural selection (<a href="http://rspb.royalsocietypublishing.org/content/263/1377/1619.short">Beaumont and Nichols 1996</a>). 
+					In biology, outlier detection is used as a test for natural selection (<a href="http://rspb.royalsocietypublishing.org/content/263/1377/1619.short">Beaumont and Nichols 1996</a>). 
 
-			</p>
+				</p>
 
-			<img src="images/Motivation1.png" width="50%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
-			<p class="caption"><strong>Figure M2. In biology, outlier detection can be used to identify positive selection in bat genes.</strong> From <a href="http://www.nature.com/ncomms/journal/v2/n12/fig_tab/ncomms1582_F5.html">Puechmaille et al</a>: microsatellite loci (red arrow indicates CTC1) from bat colonies in Myanmar and Thailand. The outliers (such as the red point) in this plot suggest loci under positive selection.</p>
+				<img src="images/Motivation1.png" width="50%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+				<p class="caption"><strong>Figure M2. In biology, outlier detection can be used to identify positive selection in bat genes.</strong> From <a href="http://www.nature.com/ncomms/journal/v2/n12/fig_tab/ncomms1582_F5.html">Puechmaille et al</a>: microsatellite loci (red arrow indicates CTC1) from bat colonies in Myanmar and Thailand. The outliers (such as the red point) in this plot suggest loci under positive selection.</p>
 
-			<p>In this project, we use various outlier detection methods to identify outliers in a data set of astonomical light curves. We modify the methods and use a mixture of experts model to determine if any improvement in outlier detection can be obtained. This project builds off of data used in the <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a> paper. </p>
+				<p>In this project, we use various outlier detection methods to identify outliers in a data set of astonomical light curves. We modify the methods and use a mixture of experts model to determine if any improvement in outlier detection can be obtained. This project builds off of data used in the <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a> paper. </p>
 
+			</div>
 		</div>
 	</div><!-- container -->
 
