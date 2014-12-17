@@ -118,11 +118,11 @@
 
 
 				<h5>Results</h5>
-				<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers.</p>
+				<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers. The optimization is done using simulated annealing over the entire range of possible $\eta$ values.</p>
 				<a href='images/Results1.png' data-lightbox='Results1'>
 				<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
 				<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
-				<p>As shown above, the mixture of experts ensemble method is able to perform better than any of the individual outlier detection methods discussed in the previous section. </p>
+				<p>As shown above, the mixture of experts ensemble method is able to perform better (in most cases) than any of the individual outlier detection methods discussed in the previous section. Cases where it does similarly or worse than  individual outlier detection methods can be explained by our optimizing of <em>both</em> the rcb and the artificial outlier detection. The simultaneous optimization of two factors may have lead to a compromises in the absolute performance for each specific outlier class. </p>
 
 				<h5>Next Steps</h5>
 				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. As well, this initial model trained on sample subset data should be used to identify outliers in the full dataset. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks, which we hope to look at next semester.</p>
