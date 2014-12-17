@@ -97,9 +97,18 @@
 		</div>
 
 		<div id="content" class="twelve columns offset-by-one">
-			<h4 class="title">Results</h4>
-			<p>Mixture Model copy and</p>
-			<img src="images/Results1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+			<h4 class="title">Mixture of Experts &amp; Results</h4>
+			<h5>Introduction to the Mixture of Experts</h5>
+			<p>With the mixture of experts approach, we assume that each outlier detection method performs best within a particular domain of the sample space. In this ensemble method, we combine the results from each method in a smart way so that the diversity of experts can make up for deficiencies in individual methods over particular domains. Therefore, the result of each expert is weighted by values generated based on the location of the point in the 57-dimensional space. The gating parameter $\eta_i$ for each expert $i$ must be trained. </p>
+			<p>The gating probability
+				$$g_i= \frac{exp(\vec{\eta_i}^T \vec{x})}{\sum_{j=i}^k\vec{\eta_j}^T \vec{x}}$$
+			</p>
+
+
+			<h5>Results</h5>
+			<p>A mixture of experts model was trained on the current data set, optimizing for the detection of the artificial and the rcb group outliers.</p>
+			<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
+			<p class="caption"><strong>Figure R1. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
 		</div>
 	</div><!-- container -->
 
