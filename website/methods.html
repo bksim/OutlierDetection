@@ -158,7 +158,28 @@
 
 
 				<h5>Local Correlation Integral (LoCI)</h5>
-				<p>Modified from Papdimitriou et al. 201?.</p>
+				<p>Modified from <a href="http://www.intel-research.net/Publications/Pittsburgh/081620021325_99.pdf">Papadimitriou et al. 2003.</a></p>
+				<p>LOCI provides an automatic, data-dictated cutoff to determine whether a point is an outlier, with very few hyperparameters forcing users to pick arbitrary cut-offs. In addition, LOCI is quickly computable (compared to previous best methods) and approximate LOCI is practically linear in time. The algorithm involves the introduction of a multi-granularity deviation factor (MDEF), and then selecting a point as an outlier if its MDEF value deviates significantly (more than 3 $\sigma$ from local averages). Intuitively, the LOCI method finds points that deviate significantly from the density of points in its local neighborhood. This is formalized in the MDEF concept. Let the $r$-neighborhood of an object $p_i$ be the set of objects within distance $r$ of $p_i$. Then, intuitively, the MDEF at radius $r$ for a point $p_i$ is the relative deviation of its local neighborhood density from the average local neighborhood density in its $r$-neighborhood. So, an object with neighborhood density that matches the average local neighborhood density will have MDEF 0; outliers will have MDEFs far from 0. More formally, we have:
+
+				$$MDEF(p_i, r, \alpha) = 1 - \frac{n(p_i, \alpha r)}{\hat{n}(p_i, \alpha, r)}$$
+
+Here, $n(p_i, \alpha r)$ is the number of $\alpha r$-neighbors of $p_i$; that is, the number of points $p\in \mathbb{P}$ such that $d(p_i, p) \leq \alpha r$, including $p_i$ itself such that $n(p_i, \alpha r) > 0$ strictly.
+
+Also, $\hat{n}(p_i, \alpha, r)$ is the average of $n(p, \alpha r)$ over the set of $r$-neighbors of $p_i$; that is,
+
+$$\hat{n}(p_i, \alpha, r) = \frac{\sum_{p\in\mathcal{N}(p_i, r)} n(p, \alpha r)}{n(p_i, r)}$$
+
+Also, define
+
+$$\sigma_{MDEF}(p_i, r, \alpha)= \frac{\sigma_{\hat{n}}(p_i, r, \alpha)}{\hat{n}(p_i, r, \alpha)}$$
+
+
+where
+
+$$\sigma_{\hat{n}}(p_i, r, \alpha) = \sqrt{\frac{\sum_{p\in\mathcal{N}(p_i, r)}(n(p, \alpha r)-\hat{n}(p_i, r, \alpha))^2}{n(p_i, r)}}$$
+
+Then, to determine if a point is an outlier, we use the following algorithm. For each $p_i\in\mathbb{P}$, compute $MDEF(p_i, r, \alpha)$ and $\sigma_{MDEF}(p_i, r, \alpha)$. If $MDEF > 3\sigma_{MDEF}$, flag $p_i$ as an outlier. If for any $r_{\textrm{min}} \leq r \leq r_{\textrm{max}}$ a point $p_i$ is flagged as an outlier via the aforementioned mechanism, then we consider that point to be an outlier. These cutoffs can be determined on a per-problem basis, but in general we use the following. We set $r_{\textrm{max}} \approx \alpha^{-1}R_{\mathbb{P}}$ and $r_{\textrm{min}}$ such that we have $\hat{n}_{\textrm{min}} = 20$ neighbors.
+</p>
 				<a href='images/Methods5.png' data-lightbox='Methods5'>
 					<img src="images/Methods5.png" width="100%"/>
 				</a>
