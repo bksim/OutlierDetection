@@ -104,7 +104,7 @@
 				<h4 class="title">Previous Work &amp; Methods</h4>
 				<p>The Mixture of experts approach gets its strength from combining the output of separate methods (experts) having presumably different regimes of expertise.</p>
 
-				<p>In this project, five outlier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of ten experts (five methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
+				<p>In this project, six outlier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of twelve experts (six methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
 
 				<p>We measure performance using two metrics. First, an artificial set of outliers are created (see below) and the method's ability to score them as outliers is measured. In the second method, we choose a class ('rcb') that is designated as outlier (based on initial data exploration). We then evaulate how well the method can score objects in this class as outliers. </p>
 
@@ -242,8 +242,26 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 				<a href='images/Methods6.png' data-lightbox='Methods6'>
 					<img src="images/Methods6.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P10. ROC for the Eskin method. </strong> We see that its performance is quite superior with the RCB class but more lacking with the artificial outliers. As discussed in the mechanics, a mixture model is only as good as the individual models that need to be mixed. Perhaps the Gaussian assumptions for the aritifical outliers are not as good. </p>
+				<p class="caption"><strong>Figure P10. ROC for the Eskin method. </strong> We see that its performance is quite superior with the RCB class but more lacking with the artificial outliers. As discussed in the mechanics, a mixture model is only as good as the individual models that need to be mixed. Perhaps the Gaussian assumptions for the artifical outliers are not as good. </p>
 
+
+				<h5>Hyperplane Regression (HyperReg)</h5>
+				<p> Mentioned in outlier detection and classification literature, like <a href="http://eprints.whiterose.ac.uk/767/1/hodgevj4.pdf">Hodge and Austin. 2004</a>, another paradigm for evaluatoin could be to use a multiple regression, which we will call hyperplane regression. This is an $n$-dimensional extension on the traditional 2D linear regression, where a regression line is computed with coefficient on the dependent variable and a constant term. When we scale up, we compute a coefficient for each feature and a constant term. To compute outliers, we take the norm of the coefficient vector and track changes when removing $k$ points. As with the Mixture Model above, the most computationally effective is just to remove one point at a time, so as not to require iteration through ${n \choose k}$ spaces for every $k$. The change in magnitude of our coefficient vector becomes a score, where scores that are over 4 standard deviations are marked as vectors.</p>
+
+				<p> Computationally, this can be done like a least-squares optimization. Again, the actual implementation is abstracted from us through uses of the statsmodel python library. This method will work best when there is linear model that represents the mechanics of the data. Actual data often have partially linear components, such as spending vs. income, or color vs. heat. This method would work well on these methods.  Higher orders would lead to linear combinations of the features, which can also be okay, though if there are any non-linearly related components, this would throw off an $n$-dimensional model and may be also better tested pairwise at the cost of more computation.	
+				</p>
+
+				<center>
+				<a href='images/planereg.png' data-lightbox='knn2'>
+					<img src="images/planereg.png"/>
+				</a>
+				</center>
+				<p class="caption"><strong>Figure P11. $n=3$ case of (hyper)plane regression.</strong> A visual for what higher order regressions look like. With 3 dimensions, the visual interpretation is straightforward - a plane within a 3D space.  Higher orders are not as intuitively visual. </p>
+				
+				<a href='images/Methods7.png' data-lightbox='Methods7'>
+					<img src="images/Methods7.png" width="100%"/>
+				</a>
+				<p class="caption"><strong>Figure P12. ROC for the Hyperplane regression.</strong> Let's See.</p>
 
 			</div>
 		</div>
