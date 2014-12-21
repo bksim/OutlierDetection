@@ -123,9 +123,9 @@
 				<h5>Timeseries Data and Feature Extraction</h5>
 
 
-				<p>Data used in the present study is a sample of the larger dataset used in <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Briefly, the astronomical time series are from the MACHO (Massive Compact Halo Object) catalog, a collection of star observations from July 1992 to 1999. Regions of the sky surveyed include the Large Magellanic Cloud (LMC), the Small Magellanic Cloud (SMC), and the Galactic bulge (<a href="http://iopscience.iop.org/0004-637X/486/2/697">Alcock et al. 1997</a>). Data from the infrared (I) and visible (V) channels are used in this project.</p>
+				<p>Data used in the present study are a sample of the larger dataset used in <a href="http://iopscience.iop.org/0004-637X/793/1/23">Nun et al. 2014</a>. Briefly, the astronomical time series are from the Massive Compact Halo Object (MACHO) catalog, a collection of star observations from July 1992 to 1999. Regions of the sky surveyed include the Large Magellanic Cloud (LMC), the Small Magellanic Cloud (SMC), and the Galactic bulge (<a href="http://iopscience.iop.org/0004-637X/486/2/697">Alcock et al. 1997</a>). Data from the infrared (I) and visible (V) channels are used in this project.</p>
 
-				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. A list of the features used can be seen in the table below, and further documentation regarding the specific features used can be found in the library and in our code. These features were calculated on the <a href="https://rc.fas.harvard.edu/odyssey/">Harvard Odyssey Cluster</a> in parallel, with infrastructure for that parallelization available for use.
+				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>. (We also contributed new features to this library.) A list of the features used is provided in the table below, and further documentation regarding the specific features used can be found in the library and in our code. These features were calculated on the <a href="https://rc.fas.harvard.edu/odyssey/">Harvard Odyssey Cluster</a> in parallel, since the cluster had infrastructure for parallelization.
 
 				<br><br>	
 				<span style='color:#2C7DA0;text-decoration:underline;cursor:pointer;' class='toggle'>[hide table of features]</span>
@@ -285,16 +285,11 @@
 					  </tbody>
 					</table>
 				</div>
-				<p class="caption"><strong>Table D1. Timeseries features and citations in the FATS library</strong> These 57 features were calculated for the light curve timeseries data.</p>
+				<p class="caption"><strong>Table D1. Timeseries features and citations in the FATS library.</strong> These 57 features were calculated for the light curve timeseries data.</p>
 
-				As part of this project, we also made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-periodogram deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
+				<p>As part of this project, we made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-periodogram deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
 
 				 <p>To train the mixture of experts model, a sample of 1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
-
-				 <p>The trained model was then applied to a larger set of 10000 light curves: 2693 from lpv, 648 from dsct, 2673 from ecl, 93 from t2cep, 1109 from cep, 38 from acep, 2637 from rrlyr, 22 from rcb, and 87 from dpv. This set includes the training set. Light curves were used only if there was data from both the I and the V channels. </p>
-
-
-
 
 				<h5>Data Visualization</h5>
 				<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). </p>
@@ -302,10 +297,10 @@
 				<a href='images/Data1.png' data-lightbox='Data1'>
 				<img src="images/Data1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
 				</a>
+				<p class="caption"><strong>Figure D1. Light curves in the PCA plane.</strong> Principal component analysis (PCA) was done on the extracted time series features for each light curve. Each dot represents a light curve. The color represents the known class labels of the light curve. Time series data from the visible (V) (top) and infrared (I) (bottom)channels are shown.</p>
 
-				<p class="caption"><strong>Figure D1. PCA of light curves.</strong> Principal component analysis (PCA) was done on the extracted time series features for each light curve. Each dot represents a light curve. The color represents the known class label of the light curve. Time series data from the visible (V) (top) and infrared (I) channels are shown.</p>
+				<p>As can be seen, the rcb class appears to be the most outlierly, with points spread out across the PCA plane, separated from the main cluster of points in the other classes. This was the reason we chose to use the rcb class to test our outlier detection methods.</p>
 
-				<p>As can be seen, the rcb class appears to be the most outlierly, with points spread out across the PCA plane, separate from the cluster of points in other classes. This was one reason we chose to use the rcb class to test our outlier detection methods.</p>
 
 
 				<h5>Initial Exploration</h5>
