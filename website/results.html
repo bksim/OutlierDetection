@@ -210,20 +210,24 @@
 
 				<a href='images/Results2.png' data-lightbox='Results2'>
 				<img src="images/Results2.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
-				<p class="caption"><strong>Figure R3. Data points with detected outliers plotted on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.1 was chosen by eye such that the obvious outliers were identified, yet not many points in the main cluster were identified as outlier. The false positive rate at this threshold is 1% and the true postive rate is 68%.</p>
+				<p class="caption"><strong>Figure R3. Data points and detected outliers on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.1 was chosen by eye such that the obvious outliers were identified, allowing only about 1% false positive rate. The false positive rate at this threshold is 1% (231 non-rcb objects) and the true postive rate is 68% (18/22 rcb objects).</p>
 
-				<p>As can be seen in Figure R3, the mixture of experts model is able to identify almost all of the objects in class rcb that appear to be far away frpm the other points on the PCA plane. With this threshold (1.1) the false positive rate is 1% and the true postive rate is 68%. Of course, depending on one's tolerance for type 1 or type 2 error, the threshold can be adjusted. </p>
+				<p>As can be seen in Figure R3, the mixture of experts model is able to identify almost all of the objects in class rcb that appear to be far away from the other points on the PCA plane. With an arbitrary threshold (1.1) the false positive rate is 1% (231 non-rcb objects) and the true postive rate is 68% (18/22 rcb objects). Of course, depending on one's tolerance for type 1 or type 2 error, the threshold can be adjusted. </p>
 
 				<h5>Application to Larger Data Set</h5>
-				<p>We used out mixture of expert model trained with the 1913 outliers to detect outliers in the larger data set of 10,000 light curves: 2693 from lpv, 648 from dsct, 2673 from ecl, 93 from t2cep, 1109 from cep, 38 from acep, 2637 from rrlyr, 22 from rcb, and 87 from dpv. This set includes the training set. Note that the number of rcb class outliers is the same as the training set, so this exercise will show the performance of the mixture model in identifying the rcb class while dealing with more non-outlier data. There is also an added dpv class. </p>
+				<p>We used the mixture of experts model trained with the 1913 outliers to detect outliers in the larger data set of 10000 light curves: 2693 from lpv, 648 from dsct, 2673 from ecl, 93 from t2cep, 1109 from cep, 38 from acep, 2637 from rrlyr, 22 from rcb, and 87 from dpv. This set includes the training set. Note that the number of rcb class outliers is the same as the training set, so this exercise will show the performance of the mixture model in identifying the rcb class while dealing with more non-outlier data. There is also an additional dpv class. </p>
 
 				<a href='images/Results3.png' data-lightbox='Results3'>
 				<img src="images/Results3.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
-				<p class="caption"><strong>Figure R4. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
+				<p class="caption"><strong>Figure R4. ROC for the mixture of experts outlier detection method applied to larger dataset of 10000 objects. </strong> The mixture of experts model does a bit better in this scenario than in the training data scenario in identifying the rcb class outliers.</p>
+
+				<p>As Figure R4 shows, the mixture of experts model is readily applicable to larger data sets. It does fairly well in the detection of rcb class outliers (AUC = 0.90), performing as well as it did on the smaller training data set (AUC = 0.89).</p>
 
 				<a href='images/Results4.png' data-lightbox='Results4'>
 				<img src="images/Results4.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
-				<p class="caption"><strong>Figure R5. Data points with detected outliers plotted on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.1 was chosen by eye such that the obvious outliers were identified, yet not many points in the main cluster were identified as outlier. The false positive rate at this threshold is 1% and the true postive rate is 68%.</p>
+				<p class="caption"><strong>Figure R5. Large data set with detected outliers plotted on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.4 was chosen by eye such that the obvious outliers were identified, yet not many points in the main cluster were identified as outlier. The false positive rate at this threshold is 1% (1711 non-rcb class objects) and the true postive rate is 68.5% (19/22 rcb class objects).</p>
+
+				<p>As can be seen in Figure R5, the mixture of experts model is able to identify almost all of the objects in class rcb that appear to be far away from the other points on the PCA plane. </p>
 
 				<h5>Next Steps</h5>
 				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks, which we hope to look at next semester.</p>
