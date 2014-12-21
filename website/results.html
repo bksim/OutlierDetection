@@ -122,6 +122,7 @@
 				<a href='images/Results1.png' data-lightbox='Results1'>
 				<img src="images/Results1.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
 				<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
+
 				<p>As shown above, the mixture of experts ensemble method is able to perform better (in most cases) than any of the individual outlier detection methods discussed in the previous section. Cases where it does similarly or worse than  individual outlier detection methods can be explained by our optimizing of <em>both</em> the rcb and the artificial outlier detection. The simultaneous optimization of two factors may have lead to a compromises in the absolute performance for each specific outlier class. </p>
 
 					<table>
@@ -196,17 +197,32 @@
 					    </tr>
 					    <tr>
 					      <td>Mixture of Experts</td>
-					      <td>0.??</td>
-					      <td>0.??</td>
-					      <td>0.??</td>
+					      <td>0.99</td>
+					      <td>0.89</td>
+					      <td>0.94</td>
 					    </tr>
 					   </tbody>
 					</table>
 				<p class="caption"><strong>Table R1. Area under the ROC curve (AUC) for various outlier detection methods.</strong> The AUC was used as a single-number metric to compare between ROC cruves (such as those seen in the Methods section). Bolded AUC values are from the outlier detection method that did the best under each outlier detection task (either detecing artificial outliers or the rcb class as outliers). </p>
 
-				<h5>Application to Larger Data Set</h5>
-				<p>We used out mixture of expert model trained with the 1913 outliers to detect outliers in the larger data set.</p>
+				<p>Table R1 shows the performance (as measured by AUC of the ROC curve) for each expert along with the performance of the mixture of experts. Since the mixture of experts is optimized for both artificial and rcb class outliers, it seems intuitive that the performance of detecting one type of outlier may be sacrificed for overall performance of both outliers. Thus, it makes sense that the average AUC for the mixture of experts is highest, but we would nto necessarily expect to see highest performance in detection of both artificial and rcb class outliers. However, the mixture still seems to be able to maintain high performance for the artificial outlier detection. </p>
 
+				<a href='images/Results2.png' data-lightbox='Results2'>
+				<img src="images/Results2.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<p class="caption"><strong>Figure R3. Data points with detected outliers plotted on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.1 was chosen by eye such that the obvious outliers were identified, yet not many points in the main cluster were identified as outlier. The false positive rate at this threshold is 1% and the true postive rate is 68%.</p>
+
+				<p>As can be seen, the mixture of experts model is able to identify almost all of the class rcb that appear to be far away frpm the other points on the PCA plane. With this threshold (1.1) the false positive rate is 1% and the true postive rate is 68%. Of course, depending on one's tolerance for type 1 or type 2 error, the threshold can be adjusted. </p>
+
+				<h5>Application to Larger Data Set</h5>
+				<p>We used out mixture of expert model trained with the 1913 outliers to detect outliers in the larger data set of 19812 light curves: 5344 from lpv, 1252 from dsct, 5365 from ecl, 202 from t2cep, 2139 from cep, 82 from acep, 5270 from rrlyr, 22 from rcb, and 136 from dpv. This set includes the training set. Note that the number of rcb class outliers is the same as the training set, so this exercise will show the performance of the mixture model in identifying the rcb class while dealing with more non-outlier data. </p>
+
+				<a href='images/Results3.png' data-lightbox='Results3'>
+				<img src="images/Results3.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<p class="caption"><strong>Figure R4. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
+
+				<a href='images/Results4.png' data-lightbox='Results4'>
+				<img src="images/Results4.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<p class="caption"><strong>Figure R5. Data points with detected outliers plotted on the PCA plane (I-channel).</strong> Detected outliers are outlied in yellow. The threshold 1.1 was chosen by eye such that the obvious outliers were identified, yet not many points in the main cluster were identified as outlier. The false positive rate at this threshold is 1% and the true postive rate is 68%.</p>
 
 				<h5>Next Steps</h5>
 				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks, which we hope to look at next semester.</p>
