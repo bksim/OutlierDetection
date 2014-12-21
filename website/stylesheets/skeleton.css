@@ -322,15 +322,17 @@ pre > code {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
 td {
-  padding: 12px 15px;
+  padding: 5px 15px;
   text-align: left;
   border-bottom: 1px solid #E1E1E1; }
+th{font-weight: bold;}
 th:first-child,
 td:first-child {
   padding-left: 0; }
 th:last-child,
 td:last-child {
   padding-right: 0; }
+table{width: 90%;margin-left: auto;margin-right: auto;}
 
 
 /* Spacing

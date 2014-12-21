@@ -124,8 +124,92 @@
 				<p class="caption"><strong>Figure R2. ROC for the combined mixture of experts outlier detection method. </strong> While the combined model does better in detecting rcb outliers, the results here suggest that a mixture of experts approach performs better than individual experts separately.</p>
 				<p>As shown above, the mixture of experts ensemble method is able to perform better (in most cases) than any of the individual outlier detection methods discussed in the previous section. Cases where it does similarly or worse than  individual outlier detection methods can be explained by our optimizing of <em>both</em> the rcb and the artificial outlier detection. The simultaneous optimization of two factors may have lead to a compromises in the absolute performance for each specific outlier class. </p>
 
+					<table>
+					  <thead>
+					    <tr>
+					      <th>Method</th>
+					      <th>Artificial Outliers AUC</th>
+					      <th>RCB Outliers AUC</th>
+					      <th>Average AUC</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>KNN 1 I-channel</td>
+					      <td>0.85</td>
+					      <td>0.94</td>
+					      <td>0.90</td>
+					    </tr>
+					    <tr>
+					      <td>KNN 1 V-channel</td>
+					      <td>0.42</td>
+					      <td>0.88</td>
+					      <td>0.65</td>
+					    </tr>
+					    <tr>
+					      <td>KNN 2 I-channel</td>
+					      <td>0.50</td>
+					      <td><strong>0.95</strong></td>
+					      <td>0.73</td>
+					    </tr>
+					    <tr>
+					      <td>KNN 2 V-channel</td>
+					      <td>0.50</td>
+					      <td>0.68</td>
+					      <td>0.59</td>
+					    </tr>
+					    <tr>
+					      <td>SVM+JP I-channel</td>
+					      <td>0.78</td>
+					      <td>0.91</td>
+					      <td>0.85</td>
+					    </tr>
+					    <tr>
+					      <td>SVM+JP V-channel</td>
+					      <td>0.62</td>
+					      <td>0.73</td>
+					      <td>0.68</td>
+					    </tr>
+					    <tr>
+					      <td>LOCI I-channel</td>
+					      <td>0.30</td>
+					      <td>0.28</td>
+					      <td>0.29</td>
+					    </tr>
+					    <tr>
+					      <td>LOCI V-channel</td>
+					      <td>0.28</td>
+					      <td>0.45</td>
+					      <td>0.37</td>
+					    </tr>
+					    <tr>
+					      <td>Hyperplane I-channel</td>
+					      <td>0.78</td>
+					      <td>0.78</td>
+					      <td>0.78</td>
+					    </tr>
+					    <tr>
+					      <td>Hyperplane V-channel</td>
+					      <td><strong>0.99</strong></td>
+					      <td>0.82</td>
+					      <td><strong>0.91</strong></td>
+					    </tr>
+					    <tr>
+					      <td>Mixture of Experts</td>
+					      <td>0.??</td>
+					      <td>0.??</td>
+					      <td>0.??</td>
+					    </tr>
+					   </tbody>
+					</table>
+				<p class="caption"><strong>Table R1. Area under the ROC curve (AUC) for various outlier detection methods.</strong> The AUC was used as a single-number metric to compare between ROC cruves (such as those seen in the Methods section). Bolded AUC values are from the outlier detection method that did the best under each outlier detection task (either detecing artificial outliers or the rcb class as outliers). </p>
+
+				<h5>Application to Larger Data Set</h5>
+				<p>We used out mixture of expert model trained with the 1913 outliers to detect outliers in the larger data set.</p>
+
+
 				<h5>Next Steps</h5>
-				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. As well, this initial model trained on sample subset data should be used to identify outliers in the full dataset. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks, which we hope to look at next semester.</p>
+				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks, which we hope to look at next semester.</p>
 			</div>
 		</div>
 	</div><!-- container -->

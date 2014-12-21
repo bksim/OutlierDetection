@@ -41,8 +41,8 @@
 
 	<script>
 	$(document).ready(function(){
-		var hide=true;
-		$(".toggle-table").toggle();
+		var hide=false;
+		//$(".toggle-table").toggle();
 	 	$(".toggle").click(function(){
 	 		if(hide){
 	 			$(".toggle").html("[hide table of features]");
@@ -128,9 +128,9 @@
 				<p>The first step of the outlier detection process is performing dimensionality reduction on the astronomical time series dataset described above. Each time series is reduced into a 57-dimensional feature vector, with features calculated using the <a href="https://pypi.python.org/pypi/FATS/1.2.0">FATS time series analysis library</a>, which we made novel feature and code contributions to. A list of the features used can be seen in the table below, and further documentation regarding the specific features used can be found in the library and in our code. These features were calculated on the <a href="https://rc.fas.harvard.edu/odyssey/">Harvard Odyssey Cluster</a> in parallel, with infrastructure for that parallelization available for use.
 
 				<br><br>	
-				<span style='color:#2C7DA0;text-decoration:underline;cursor:pointer;' class='toggle'>[show table of features]</span>
+				<span style='color:#2C7DA0;text-decoration:underline;cursor:pointer;' class='toggle'>[hide table of features]</span>
 				<div class='toggle-table'>
-					<table class="u-full-width">
+					<table>
 					  <thead>
 					    <tr>
 					      <th>Feature</th>
@@ -285,10 +285,13 @@
 					  </tbody>
 					</table>
 				</div>
+				<p class="caption"><strong>Table D1. Timeseries features and citations in the FATS library</strong> These 57 features were calculated for the light curve timeseries data.</p>
 
 				As part of this project, we also made contributions to the FATS library, creating 24 features representing the amplitudes and phases of various Lomb-Scargle-periodogram deduced frequencies and harmonics. These 24 features are included in our 57-dimensional feature space.</p>
 
-				 <p>1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
+				 <p>To train the mixture of experts model, a sample of 1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
+
+				 <p>The trained model was then applied to a larger set of 19812 light curves: 136 from dpv, 5344 from lpv, 1252 from dsct, 5365 from ecl, 202 from t2cep, 2139 from cep, 82 from acep, 5270 from rrlyr, 22 from rcb. This set includes the training set. Light curves were used only if there was data from both the I and the V channels. </p>
 
 
 
