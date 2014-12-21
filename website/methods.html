@@ -106,7 +106,7 @@
 
 				<p>In this project, six outlier detection methods (modified and/or unmodified from previous work) were used on either the infrared (I) or visual (V) channels of the light curves. This gave a total of twelve experts (six methods on two different channels). Here, we describe each outlier detection method and show its stand-alone performance. </p>
 
-				<p>We measure performance using two metrics. First, an artificial set of outliers are created (see below) and the method's ability to score them as outliers is measured. In the second method, we choose a class ('rcb') that is designated as outlier (based on initial data exploration). We then evaulate how well the method can score objects in this class as outliers. </p>
+				<p>We measure performance using two metrics. First, an artificial set of outliers were created (see below) and the method's ability to score them as outliers is measured. In the second method, we choose a class ('rcb') that is designated as outlier (based on initial data exploration). We then evaulate how well the method can score objects in this class as outliers. </p>
 
 				<h5>Creation of Artificial Outliers</h5>
 				<p>20 artificial outliers were created by first randomly sampling 20 light curves from the data set. Within each feature, the 20 values were randomly shuffled among the data points. Then, $n$ standard deviations (of each feature) were randomly added to each data value, where $n$ is selected from a standard normal distribution centered at 4. Figure P1 shows the outliers plotted on the PCA plane.</p>
@@ -133,7 +133,7 @@
 				<a href='images/Methods2.png' data-lightbox='Methods2'>
 					<img src="images/Methods2.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> The ROC curves shows that this method works well espescially for the RCB outlier class.  We see an fairly optimal curve and this validates our hypothesis that a simple geometric approach may lead to positive results. The artificial outlier class is not as easily detected. Area under the curve (AUC) is used as a metric to measure how optimal the model is.</p>
+				<p class="caption"><strong>Figure P3. ROC for the KNN1 method.</strong> The ROC curves show that this method works well espescially for the RCB outlier class.  We see an fairly optimal curve and this validates our hypothesis that a simple geometric approach may lead to positive results. The artificial outlier class is not as easily detected. Area under the curve (AUC) is used as a metric to measure how optimal the model is.</p>
 
 
 				<h5>K Nearest Neighbors 2 (KNN2)</h5>
@@ -151,7 +151,7 @@
 				<a href='images/Methods3.png' data-lightbox='Methods3'>
 					<img src="images/Methods3.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P5. ROC for the KNN2 method.</strong> This version independently performs fairly well put not as well as KNN1 for the RCB class but detected the artificial outlier class moderately better.</p>
+				<p class="caption"><strong>Figure P5. ROC for the KNN2 method.</strong> This version independently performs fairly well for the rcb class, but completely fails for the artificial outliers.</p>
 
 
 				<h5>Support Vector Machine &amp; Joint Probability (SVM+JP)</h5>
@@ -167,7 +167,7 @@
 				<a href='images/Methods4.png' data-lightbox='Methods4'>
 				<img src="images/Methods4.png" width="100%"/>
 					</a>
-				<p class="caption"><strong>Figure P7. ROC for the SVM+JP method. </strong> In the infrared channel (left), the SVM+JP method does very well in idenfitying the rcb outliers, whereas it does not do significantly well above random guessing for the Artificual outliers. In the visible channel (left), there is poorer performance for the rcb data. </p>
+				<p class="caption"><strong>Figure P7. ROC for the SVM+JP method. </strong> In the infrared channel (left), the SVM+JP method does very well in idenfitying the rcb outliers, and it performs moderately better than random guessing for the artificual outliers. In the visible channel (left), there is poorer performance for the rcb data. </p>
 
 
 
@@ -177,23 +177,23 @@
 
 				$$MDEF(p_i, r, \alpha) = 1 - \frac{n(p_i, \alpha r)}{\hat{n}(p_i, \alpha, r)}$$
 
-Here, $n(p_i, \alpha r)$ is the number of $\alpha r$-neighbors of $p_i$; that is, the number of points $p\in \mathbb{P}$ such that $d(p_i, p) \leq \alpha r$, including $p_i$ itself such that $n(p_i, \alpha r) > 0$ strictly.
+				Here, $n(p_i, \alpha r)$ is the number of $\alpha r$-neighbors of $p_i$; that is, the number of points $p\in \mathbb{P}$ such that $d(p_i, p) \leq \alpha r$, including $p_i$ itself such that $n(p_i, \alpha r) > 0$ strictly.
 
-Also, $\hat{n}(p_i, \alpha, r)$ is the average of $n(p, \alpha r)$ over the set of $r$-neighbors of $p_i$; that is,
+				Also, $\hat{n}(p_i, \alpha, r)$ is the average of $n(p, \alpha r)$ over the set of $r$-neighbors of $p_i$; that is,
 
-$$\hat{n}(p_i, \alpha, r) = \frac{\sum_{p\in\mathcal{N}(p_i, r)} n(p, \alpha r)}{n(p_i, r)}$$
+				$$\hat{n}(p_i, \alpha, r) = \frac{\sum_{p\in\mathcal{N}(p_i, r)} n(p, \alpha r)}{n(p_i, r)}$$
 
-Also, define
+				Also, define
 
-$$\sigma_{MDEF}(p_i, r, \alpha)= \frac{\sigma_{\hat{n}}(p_i, r, \alpha)}{\hat{n}(p_i, r, \alpha)}$$
+				$$\sigma_{MDEF}(p_i, r, \alpha)= \frac{\sigma_{\hat{n}}(p_i, r, \alpha)}{\hat{n}(p_i, r, \alpha)}$$
 
 
-where
+				where
 
-$$\sigma_{\hat{n}}(p_i, r, \alpha) = \sqrt{\frac{\sum_{p\in\mathcal{N}(p_i, r)}(n(p, \alpha r)-\hat{n}(p_i, r, \alpha))^2}{n(p_i, r)}}$$
+				$$\sigma_{\hat{n}}(p_i, r, \alpha) = \sqrt{\frac{\sum_{p\in\mathcal{N}(p_i, r)}(n(p, \alpha r)-\hat{n}(p_i, r, \alpha))^2}{n(p_i, r)}}$$
 
-Then, to determine if a point is an outlier, we use the following algorithm. For each $p_i\in\mathbb{P}$, compute $MDEF(p_i, r, \alpha)$ and $\sigma_{MDEF}(p_i, r, \alpha)$. If $MDEF > 3\sigma_{MDEF}$, flag $p_i$ as an outlier. If for any $r_{\textrm{min}} \leq r \leq r_{\textrm{max}}$ a point $p_i$ is flagged as an outlier via the aforementioned mechanism, then we consider that point to be an outlier. These cutoffs can be determined on a per-problem basis, but in general we use the following. We set $r_{\textrm{max}} \approx \alpha^{-1}R_{\mathbb{P}}$ and $r_{\textrm{min}}$ such that we have $\hat{n}_{\textrm{min}} = 20$ neighbors.
-</p>
+				Then, to determine if a point is an outlier, we use the following algorithm. For each $p_i\in\mathbb{P}$, compute $MDEF(p_i, r, \alpha)$ and $\sigma_{MDEF}(p_i, r, \alpha)$. If $MDEF > 3\sigma_{MDEF}$, flag $p_i$ as an outlier. If for any $r_{\textrm{min}} \leq r \leq r_{\textrm{max}}$ a point $p_i$ is flagged as an outlier via the aforementioned mechanism, then we consider that point to be an outlier. These cutoffs can be determined on a per-problem basis, but in general we use the following. We set $r_{\textrm{max}} \approx \alpha^{-1}R_{\mathbb{P}}$ and $r_{\textrm{min}}$ such that we have $\hat{n}_{\textrm{min}} = 20$ neighbors.
+				</p>
 				<a href='images/Methods5.png' data-lightbox='Methods5'>
 					<img src="images/Methods5.png" width="100%"/>
 				</a>
@@ -261,7 +261,7 @@ Then, to determine if a point is an outlier, we use the following algorithm. For
 				<a href='images/Methods7.png' data-lightbox='Methods7'>
 					<img src="images/Methods7.png" width="100%"/>
 				</a>
-				<p class="caption"><strong>Figure P12. ROC for the Hyperplane regression.</strong> This method performs clearly the best for the artificial outliers. </p>
+				<p class="caption"><strong>Figure P12. ROC for the Hyperplane regression.</strong> This method performs clearly the best for the artificial outliers in the V channel. For everything else, it does not perform better than the other experts shown above. </p>
 
 			</div>
 		</div>
