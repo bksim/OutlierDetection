@@ -292,7 +292,7 @@
 				 <p>To train the mixture of experts model, a sample of 1913 light curves were used: 296 from lpv, 293 from dsct, 297 from ecl, 202 from t2cep, 294 from cep, 82 from acep, 291 from rrlyr, and 22 from rcb. Light curves were used only if there was data from both the I and the V channels. </p>
 
 				<h5>Data Visualization</h5>
-				<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). </p>
+				<p>To visualize the 57-dimension data points more easily, principal component analysis (PCA) was done on the extracted time series features for each light curve. The first two principal components were used to make a 2D plot (Figure D1). PCA was used because visualizing a 57-dimensional space on a 2D image is very difficult. One could imagine plotting the data points on axes of each pair of features. However, this would create too many (57 choose 2) plots and therefore would be hard to easily grasp the shape of the data point cloud. PCA is a great way to draw a plane through the 57-dimensional data point cloud in such a way that the plane captures the most variation in the data. Projecting the data points on this place thus may allow visualization of outlier points more easily. We note that PCA was solely used as a visualization tool, and was not used for any of the mathematical mechanics in building the outlier detection models. </p>
 
 				<a href='images/Data1.png' data-lightbox='Data1'>
 				<img src="images/Data1.png" width="100%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/>
