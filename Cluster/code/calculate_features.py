@@ -93,54 +93,61 @@ def calculate_features(lc_fn, feature_list):
 
 if __name__ == "__main__":
 	# parse arguments
-	parser = argparse.ArgumentParser()
-	parser.add_argument("-p", "--path", default='I', type=str, help="path of the data")
-	parser.add_argument("-o", "--out", default='features_I.csv', type=str, help="output file location")
-	args = parser.parse_args()
-	path=args.path
-	outfile=args.out
-	featureList=['Amplitude',
-	            'AndersonDarling',
-	            'Automean',
-	            'Autocor_length',
-	            #'Beyond1Std', #this feature doesn't work
-	            'CAR_sigma',
-	            'CAR_tmean',
-	            'CAR_tau',
-	            'Con',
-	            'Eta_e',
-	            'FluxPercentileRatioMid20',
-	            'FluxPercentileRatioMid35',
-	            'FluxPercentileRatioMid50',
-	            'FluxPercentileRatioMid65',
-	            'FluxPercentileRatioMid80',
-	            'LinearTrend',
-	            'MaxSlope',
-	            'Mean',
-	            'Meanvariance',
-	            'MedianAbsDev',
-	            'MedianBRP',
-	            'PairSlopeTrend',
-	            'PercentAmplitude',
-	            'PercentDifferenceFluxPercentile',
-	            'PeriodLS',
-	            'Period_fit',
-	            'Psi_CS',
-	            'Psi_eta',
-	            'Q31',
-	            'Rcs',
-	            'Skew',
-	            'SmallKurtosis',
-	            'Std',
-	            'StetsonK'
-	            ]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--path", default='I', type=str, help="path of the data")
+    parser.add_argument("-o", "--out", default='features_I.csv', type=str, help="output file location")
+    parser.add_argument("-s", "--start", default=0, type=int, help="start curve inclusive")
+    parser.add_argument("-e", "--end", default=0, type=int, help="end curve not inclusive")
 
-	fullfeaturelist = ['Amplitude', 'AndersonDarling', 'Autocor_length', 'Automean', 'CAR_sigma', 'CAR_tau', 'CAR_tmean', 'Con', 'Eta_e', 'FluxPercentileRatioMid20', 'FluxPercentileRatioMid35', 'FluxPercentileRatioMid50', 'FluxPercentileRatioMid65', 'FluxPercentileRatioMid80', 'LinearTrend', 'MaxSlope', 'Mean', 'Meanvariance', 'MedianAbsDev', 'MedianBRP', 'PairSlopeTrend', 'PercentAmplitude', 'PercentDifferenceFluxPercentile', 'PeriodLS', 'Period_fit', 'Psi_CS', 'Psi_eta', 'Q31', 'Rcs', 'Skew', 'SmallKurtosis', 'Std', 'StetsonK', 'freq1_harmonics_amplitude_0', 'freq1_harmonics_amplitude_1', 'freq1_harmonics_amplitude_2', 'freq1_harmonics_amplitude_3', 'freq1_harmonics_rel_phase_0', 'freq1_harmonics_rel_phase_1', 'freq1_harmonics_rel_phase_2', 'freq1_harmonics_rel_phase_3', 'freq2_harmonics_amplitude_0', 'freq2_harmonics_amplitude_1', 'freq2_harmonics_amplitude_2', 'freq2_harmonics_amplitude_3', 'freq2_harmonics_rel_phase_0', 'freq2_harmonics_rel_phase_1', 'freq2_harmonics_rel_phase_2', 'freq2_harmonics_rel_phase_3', 'freq3_harmonics_amplitude_0', 'freq3_harmonics_amplitude_1', 'freq3_harmonics_amplitude_2', 'freq3_harmonics_amplitude_3', 'freq3_harmonics_rel_phase_0', 'freq3_harmonics_rel_phase_1', 'freq3_harmonics_rel_phase_2', 'freq3_harmonics_rel_phase_3']
-	with open(outfile, 'wb') as fout:
-	    fout.write(",".join(['LC'] + fullfeaturelist) + '\n')
-	    for fn in os.listdir(path):
-	        features_temp = calculate_features(path+'/'+fn, featureList)
-	        vals = []
-	        for k in fullfeaturelist:
-	            vals.append(features_temp[k])
-	        fout.write(",".join([fn.split('.')[0]]+[str(v) for v in vals])+'\n')
+    args = parser.parse_args()
+    path=args.path
+    outfile=args.out
+    start=args.start
+    end=args.end
+    featureList=['Amplitude',
+                'AndersonDarling',
+                'Automean',
+                'Autocor_length',
+                #'Beyond1Std', #this feature doesn't work
+                'CAR_sigma',
+                'CAR_tmean',
+                'CAR_tau',
+                'Con',
+                'Eta_e',
+                'FluxPercentileRatioMid20',
+                'FluxPercentileRatioMid35',
+                'FluxPercentileRatioMid50',
+                'FluxPercentileRatioMid65',
+                'FluxPercentileRatioMid80',
+                'LinearTrend',
+                'MaxSlope',
+                'Mean',
+                'Meanvariance',
+                'MedianAbsDev',
+                'MedianBRP',
+                'PairSlopeTrend',
+                'PercentAmplitude',
+                'PercentDifferenceFluxPercentile',
+                'PeriodLS',
+                'Period_fit',
+                'Psi_CS',
+                'Psi_eta',
+                'Q31',
+                'Rcs',
+                'Skew',
+                'SmallKurtosis',
+                'Std',
+                'StetsonK'
+                ]
+
+    fullfeaturelist = ['Amplitude', 'AndersonDarling', 'Autocor_length', 'Automean', 'CAR_sigma', 'CAR_tau', 'CAR_tmean', 'Con', 'Eta_e', 'FluxPercentileRatioMid20', 'FluxPercentileRatioMid35', 'FluxPercentileRatioMid50', 'FluxPercentileRatioMid65', 'FluxPercentileRatioMid80', 'LinearTrend', 'MaxSlope', 'Mean', 'Meanvariance', 'MedianAbsDev', 'MedianBRP', 'PairSlopeTrend', 'PercentAmplitude', 'PercentDifferenceFluxPercentile', 'PeriodLS', 'Period_fit', 'Psi_CS', 'Psi_eta', 'Q31', 'Rcs', 'Skew', 'SmallKurtosis', 'Std', 'StetsonK', 'freq1_harmonics_amplitude_0', 'freq1_harmonics_amplitude_1', 'freq1_harmonics_amplitude_2', 'freq1_harmonics_amplitude_3', 'freq1_harmonics_rel_phase_0', 'freq1_harmonics_rel_phase_1', 'freq1_harmonics_rel_phase_2', 'freq1_harmonics_rel_phase_3', 'freq2_harmonics_amplitude_0', 'freq2_harmonics_amplitude_1', 'freq2_harmonics_amplitude_2', 'freq2_harmonics_amplitude_3', 'freq2_harmonics_rel_phase_0', 'freq2_harmonics_rel_phase_1', 'freq2_harmonics_rel_phase_2', 'freq2_harmonics_rel_phase_3', 'freq3_harmonics_amplitude_0', 'freq3_harmonics_amplitude_1', 'freq3_harmonics_amplitude_2', 'freq3_harmonics_amplitude_3', 'freq3_harmonics_rel_phase_0', 'freq3_harmonics_rel_phase_1', 'freq3_harmonics_rel_phase_2', 'freq3_harmonics_rel_phase_3']
+    with open(outfile, 'wb') as fout:
+        fout.write(",".join(['LC'] + fullfeaturelist) + '\n')
+        for fn in os.listdir(path):
+            filenumber = float(fn.split('-')[3].split('.')[0])
+            if filenumber>=start and filenumber<end:
+                features_temp = calculate_features(path+'/'+fn, featureList)
+                vals = []
+                for k in fullfeaturelist:
+                    vals.append(features_temp[k])
+                fout.write(",".join([fn.split('.')[0]]+[str(v) for v in vals])+'\n')
