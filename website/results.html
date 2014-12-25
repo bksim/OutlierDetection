@@ -237,6 +237,30 @@
 				<p>As can be seen in Figure R5, the mixture of experts model is able to identify almost all of the objects that appear to be far away from the other points on the PCA plane, even though most of them are not in the class rcb. This suggests that our current ROC curve (which measures effectiveness in identifying rcb class outliers) may not be the best metric to evalate these models. It also shows that this outlier detection method is very applicable to larger data sets in identifying outliers in classes that we didn't even train with. </p>
 
 
+
+				<p>The top ten outliers identified were the following: 2 from the class RRLYR, 2 from the class RCB, and 6 from the class LPV. In the following figures, we plot the outlier timeseries (in red) and we plot the rest of the timeseries in its class (in gray). </p>
+				<a href='outlier_images/lpv_I.png' data-lightbox='lpv_I'>
+				<img src="outlier_images/lpv_I.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<a href='outlier_images/lpv_V.png' data-lightbox='lpv_V'>
+				<img src="outlier_images/lpv_V.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+
+				<p class="caption"><strong>Figure R6. Outlier and typical lightcurve timeseries from class LPV.</strong> Timeseries belonging to objects identified as part of the top ten outliers are colored in red. Other timeseries that are in the same class are colored in gray. It seems obvious that the red timeseries are different from the others. Some of them have lower magnitude, while some are longer. Note that objects are flagged as outlier using information from both the I and the V channels combined. Thus, while some red timeseries may not appear to be outlier, outlierliness in the <em>combination</em> of that object's I and V channels may have caused the object to be marked as outlier. </p>
+
+				<a href='outlier_images/rcb_I.png' data-lightbox='rcb_I'>
+				<img src="outlier_images/rcb_I.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<a href='outlier_images/rcb_V.png' data-lightbox='rcb_V'>
+				<img src="outlier_images/rcb_V.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+
+				<p class="caption"><strong>Figure R7. Outlier and typical lightcurve timeseries from class RCB.</strong> Timeseries belonging to objects identified as part of the top ten outliers are colored in red. Other timeseries that are in the same class are colored in gray. Note that objects are flagged as outlier using information from both the I and the V channels combined. Thus, while some red timeseries may not appear to be outlier, outlierliness in the <em>combination</em> of that object's I and V channels may have caused the object to be marked as outlier. </p>
+
+				<a href='outlier_images/rrlyr_I.png' data-lightbox='rrlyr_I'>
+				<img src="outlier_images/rrlyr_I.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+				<a href='outlier_images/rrlyr_V.png' data-lightbox='rrlyr_V'>
+				<img src="outlier_images/rrlyr_V.png" width="70%" style="margin-left: auto; margin-right: auto; display: block;margin-bottom:15px;"/></a>
+
+				<p class="caption"><strong>Figure R8. Outlier and typical lightcurve timeseries from class RRLYR.</strong> Timeseries belonging to objects identified as part of the top ten outliers are colored in red. Other timeseries that are in the same class are colored in gray. It seems obvious that the red timeseries are different from the others, just due to length. Note that objects are flagged as outlier using information from both the I and the V channels combined. Thus, while some red timeseries may not appear to be outlier, outlierliness in the <em>combination</em> of that object's I and V channels may have caused the object to be marked as outlier. </p>
+
+
 				<h5>Next Steps</h5>
 				<p>Future work should focus on the addition of more outlier detection "experts" to the model. In addition, the optimization of the gating parmeter $\eta$ in mixture of experts model may be optimized simultaneously with individual expert parameters using expectation maximization and stochastic gradient descent. In addition, we look to use our easily extensible code to extend our work to other domains - in particular, fraud detection in financial transaction networks.</p>
 			</div>
